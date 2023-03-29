@@ -7,7 +7,7 @@
     <artifactId>example-jersey-webapp</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>example-jersey-webapp</name>
+    <name>Cinema_Web_Service</name>
 
     <dependencyManagement>
         <dependencies>
@@ -45,7 +45,7 @@
     </dependencies>
 
     <build>
-        <finalName>simple-jersey-webapp</finalName>
+        <finalName>Cinema_Web_Service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
