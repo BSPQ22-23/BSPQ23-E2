@@ -40,9 +40,9 @@ public class UserResource {
         
             // This data could be retrieved from a database
         List<User> users = new ArrayList<>();
-        users.add(new User(0, "John", "Smith"));
-        users.add(new User(1, "Isaac", "Newton"));
-        users.add(new User(2, "Albert", "Einstein"));
+        users.add(new User(0, "John", "Smith", "jonhn@smith.com", "pass1"));
+        users.add(new User(1, "Isaac", "Newton", "isaac@newton.es", "pass2"));
+        users.add(new User(2, "Albert", "Einstein", "albert@einstein.es", "pass3"));
 
         Stream<User> stream = users.stream();
         // check if the query parameter was passed in the URL
@@ -68,7 +68,7 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addUser(User user) {
         // here we will process the received user data
-        System.out.println("Adding a new user: " + user.getName() + " " + user.getSurname());
+        System.out.println("Adding a new user: " + user.getName() + " " + user.getSurname() + " with email: " + user.getEmail());
         // return a response containing a user with only the code for the new user
         return Response.ok(new User(15)).build();
     }

@@ -45,7 +45,7 @@
     </dependencies>
 
     <build>
-        <finalName>Cinema_Web_Service</finalName>
+        <finalName>Cinema-Web-Service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
