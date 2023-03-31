@@ -32,17 +32,18 @@ public class UserResource {
             return Order.valueOf(value.toUpperCase());
         }
     }
+    
+    static List<User> users = new ArrayList<>();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsers(@QueryParam("filter") String str,
         @QueryParam("order") @DefaultValue("ASC") Order order) {
         
-            // This data could be retrieved from a database
-        List<User> users = new ArrayList<>();
-        users.add(new User(0, "John", "Smith", "jonhn@smith.com", "pass1"));
+            // This data SHOULD be retrieved from a database
+        /*users.add(new User(0, "John", "Smith", "jonhn@smith.com", "pass1"));
         users.add(new User(1, "Isaac", "Newton", "isaac@newton.es", "pass2"));
-        users.add(new User(2, "Albert", "Einstein", "albert@einstein.es", "pass3"));
+        users.add(new User(2, "Albert", "Einstein", "albert@einstein.es", "pass3"));*/
 
         Stream<User> stream = users.stream();
         // check if the query parameter was passed in the URL
@@ -54,8 +55,8 @@ public class UserResource {
         // as the parameter has a default value there is no need to
         // check if the parameter is null
         if (order == Order.DESC) {
-            stream = stream.sorted(Comparator.comparing(User::getSurname).reversed());
-        } else {
+            stream = stream.sorted(Comparator.comparing(User::getSurname).reversed()); //Here is stated that the parameter to compare is 
+        } else {																	   //the surname starting from the last character 
             stream = stream.sorted(Comparator.comparing(User::getSurname));
         }
 
@@ -69,8 +70,9 @@ public class UserResource {
     public Response addUser(User user) {
         // here we will process the received user data
         System.out.println("Adding a new user: " + user.getName() + " " + user.getSurname() + " with email: " + user.getEmail());
-        // return a response containing a user with only the code for the new user
-        return Response.ok(new User(15)).build();
+        users.add(user);
+        // return a response containing a user with the user
+        return Response.ok(user).build();
     }
 
     @DELETE

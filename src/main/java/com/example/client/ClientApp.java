@@ -24,26 +24,6 @@ public class ClientApp {
         Client client = ClientBuilder.newClient();
         final WebTarget appTarget = client.target(SERVER_ENDPOINT);
 
-        // issuing a GET request to the users endpoint with some query parameters
-        try {
-            Response response = appTarget.path(USERS_RESOURCE)
-                .queryParam("filter", "e")
-                .queryParam("order", "desc")
-                .request(MediaType.APPLICATION_JSON)
-                .get();
-
-            // check that the response was HTTP OK
-            if (response.getStatusInfo().toEnum() == Status.OK) {
-                // the response is a generic type (a List<User>)
-                GenericType<List<User>> listType = new GenericType<List<User>>(){};
-                List<User> users = response.readEntity(listType);
-                System.out.println(users);
-            } else {
-                System.out.format("Error obtaining user list. %s%n", response);
-            }
-        } catch (ProcessingException e) {
-            System.out.format("Error obtaining user list. %s%n", e.getMessage());
-        }
 
         // sending a POST with a new user
         try {
@@ -63,6 +43,46 @@ public class ClientApp {
             }
         } catch (ProcessingException e) {
             System.out.format("Error posting a new user. %s%n", e.getMessage());
+        }
+        
+        try {
+            User user = new User(0, "John", "Smith", "jonhn@smith.com", "pass1");
+            Response response = appTarget.path(USERS_RESOURCE)
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(user, MediaType.APPLICATION_JSON)
+            );
+
+            // check if the response was ok
+            if (response.getStatusInfo().toEnum() == Status.OK) {
+                // obtain the response data (contains a user with the new code)
+                User userCode = response.readEntity(User.class);
+                System.out.format("User registered with code %d%n", userCode.getCode());
+            } else {
+                System.out.format("Error posting a user list. %s%n", response);
+            }
+        } catch (ProcessingException e) {
+            System.out.format("Error posting a new user. %s%n", e.getMessage());
+        }
+        
+     // issuing a GET request to the users endpoint with some query parameters
+        try {
+            Response response = appTarget.path(USERS_RESOURCE)
+                //.queryParam("filter", "e") //here is made that only the users with last surname letter "e" are shown
+                .queryParam("order", "desc") 
+                .request(MediaType.APPLICATION_JSON)
+                .get();
+
+            // check that the response was HTTP OK
+            if (response.getStatusInfo().toEnum() == Status.OK) {
+                // the response is a generic type (a List<User>)
+                GenericType<List<User>> listType = new GenericType<List<User>>(){};
+                List<User> users = response.readEntity(listType);
+                System.out.println(users);
+            } else {
+                System.out.format("Error obtaining user list. %s%n", response);
+            }
+        } catch (ProcessingException e) {
+            System.out.format("Error obtaining user list. %s%n", e.getMessage());
         }
 
         // sending a DELETE request to the server
