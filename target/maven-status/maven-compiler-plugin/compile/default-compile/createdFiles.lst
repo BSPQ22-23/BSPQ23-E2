@@ -1,4 +1,5 @@
 com\example\MyResource.class
+com\example\client\ClientApp$2.class
 com\example\pojo\User.class
 com\example\UserResource.class
 com\example\client\ClientApp.class
