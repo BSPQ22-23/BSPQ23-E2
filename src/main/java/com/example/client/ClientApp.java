@@ -55,6 +55,7 @@ public class ClientApp {
             String email = sc.nextLine();
             System.out.print("Password: ");
             String pass = sc.nextLine();
+            sc.close();
 
             User user = new User(code, name, surname, email, pass);
             Response response = appTarget.path(REGISTER)
