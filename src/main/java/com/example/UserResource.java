@@ -78,11 +78,15 @@ public class UserResource {
     @DELETE
     @Path("/{code}")
     public Response deleteUser(@PathParam("code") int code) {
-        if (code == 10) {
-            System.out.println("Deleting user...");
-            return Response.status(Response.Status.OK).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+    	for (int i=0; i<users.size(); i++) {
+    		if (users.get(i).getCode() == code) {
+                System.out.println("Deleting user...");
+                users.remove(i);
+                return Response.status(Response.Status.OK).build();
+            } else {
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+    	}
+    	return Response.status(Response.Status.NOT_FOUND).build();
     }
 }

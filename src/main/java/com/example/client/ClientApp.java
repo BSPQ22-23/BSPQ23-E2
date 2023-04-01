@@ -88,7 +88,7 @@ public class ClientApp {
         // sending a DELETE request to the server
 
         try {
-            int code = 10;
+            int code = 31;
             Response response = appTarget.path(USERS_RESOURCE)
                 .path(Integer.toString(code))
                 .request()
