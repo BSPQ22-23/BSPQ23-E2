@@ -34,6 +34,7 @@ public class UserResource {
     }
     
     static List<User> users = new ArrayList<>();
+    static User loggedUser;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -67,16 +68,40 @@ public class UserResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("/register")
     public Response addUser(User user) {
+        
         // here we will process the received user data
         System.out.println("Adding a new user: " + user.getName() + " " + user.getSurname() + " with email: " + user.getEmail());
         users.add(user);
         // return a response containing a user with the user
         return Response.ok(user).build();
     }
+    
+    @GET
+    @Path("/login={name}&{pass}")
+    //@Produces(MediaType.APPLICATION_JSON)
+    public Response logIn(@PathParam("name") String username, @PathParam("pass") String password) {
+    	for (int i=0; i<users.size(); i++) {
+    		System.out.println(username);
+    		System.out.println(users.get(i).getName());
+    		if(users.get(i).getName().equals(username) && users.get(i).getPassword().equals(password)) {
+    			
+    			System.out.println("User found");
+    			loggedUser = users.get(i);
+    			System.out.println(users.get(i));
+    			return Response.status(Response.Status.OK).build();
+    		} else {
+    			
+    			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+    		}
+    	}
+    	
+    	return Response.status(Response.Status.NOT_FOUND).build();
+    }
 
     @DELETE
-    @Path("/{code}")
+    @Path("/delete={code}")
     public Response deleteUser(@PathParam("code") int code) {
     	for (int i=0; i<users.size(); i++) {
     		if (users.get(i).getCode() == code) {
