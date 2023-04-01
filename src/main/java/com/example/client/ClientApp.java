@@ -155,10 +155,12 @@ public class ClientApp {
         }
         
         try {
+        	String name = "John";
+        	String password = "pass1";
             Response response = appTarget.path(USERS_RESOURCE)
-                .path("login")
-                .queryParam("name", "John")
-                .queryParam("pass", "pass1")
+                .path("login="+ name + "&" + password)
+                //.queryParam("name", "John")
+                //.queryParam("pass", "pass1")
                 .request(MediaType.APPLICATION_JSON)
                 .get();
             

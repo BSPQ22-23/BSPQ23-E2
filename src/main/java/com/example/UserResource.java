@@ -79,11 +79,14 @@ public class UserResource {
     }
     
     @GET
-    @Path("/login")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/login={name}&{pass}")
+    //@Produces(MediaType.APPLICATION_JSON)
     public Response logIn(@PathParam("name") String username, @PathParam("pass") String password) {
     	for (int i=0; i<users.size(); i++) {
-    		if(users.get(i).getName() == username && users.get(i).getPassword() == password) {
+    		System.out.println(username);
+    		System.out.println(users.get(i).getName());
+    		if(users.get(i).getName().equals(username) && users.get(i).getPassword().equals(password)) {
+    			
     			System.out.println("User found");
     			loggedUser = users.get(i);
     			System.out.println(users.get(i));
