@@ -176,5 +176,27 @@ public class ClientApp {
         } catch (ProcessingException e) {
             System.out.format("Error logging in. %s%n", e.getMessage());
         }
+        
+        try {
+        	String email = "jonhn@smith.com";
+        	String password = "pass1";
+            Response response = appTarget.path(USERS_RESOURCE)
+                .path("elogin="+ email + "&" + password)
+                //.queryParam("name", "John")
+                //.queryParam("pass", "pass1")
+                .request(MediaType.APPLICATION_JSON)
+                .get();
+            
+            
+            
+            // check that the response was HTTP OK
+            if (response.getStatusInfo().toEnum() == Status.OK) {
+                System.out.println("User successfully logged");
+            } else {
+                System.out.format("Error logging in. %s%n", response);
+            }
+        } catch (ProcessingException e) {
+            System.out.format("Error logging in. %s%n", e.getMessage());
+        }
     }
 }

@@ -71,7 +71,11 @@ public class UserResource {
     @Path("/register")
     public Response addUser(User user) {
         
-        // here we will process the received user data
+        for (int i=0; i<users.size(); i++) {
+        	if(users.get(i).getEmail().equals(user.getEmail())) {
+        		return Response.status(Response.Status.FORBIDDEN).build();
+        	}
+        }
         System.out.println("Adding a new user: " + user.getName() + " " + user.getSurname() + " with email: " + user.getEmail());
         users.add(user);
         // return a response containing a user with the user
@@ -83,9 +87,32 @@ public class UserResource {
     //@Produces(MediaType.APPLICATION_JSON)
     public Response logIn(@PathParam("name") String username, @PathParam("pass") String password) {
     	for (int i=0; i<users.size(); i++) {
-    		System.out.println(username);
-    		System.out.println(users.get(i).getName());
+    		//System.out.println(username);
+    		//System.out.println(users.get(i).getName());
     		if(users.get(i).getName().equals(username) && users.get(i).getPassword().equals(password)) {
+    			
+    			System.out.println("User found");
+    			loggedUser = users.get(i);
+    			System.out.println(users.get(i));
+    			return Response.status(Response.Status.OK).build();
+    		} else {
+    			
+    			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+    		}
+    	}
+    	
+    	return Response.status(Response.Status.NOT_FOUND).build();
+    }
+    
+
+    @GET
+    @Path("/elogin={email}&{pass}")
+    //@Produces(MediaType.APPLICATION_JSON)
+    public Response elogIn(@PathParam("email") String email, @PathParam("pass") String password) {
+    	for (int i=0; i<users.size(); i++) {
+    		//System.out.println(email);
+    		//System.out.println(users.get(i).getEmail());
+    		if(users.get(i).getEmail().equals(email) && users.get(i).getPassword().equals(password)) {
     			
     			System.out.println("User found");
     			loggedUser = users.get(i);
