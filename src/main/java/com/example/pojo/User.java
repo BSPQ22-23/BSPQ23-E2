@@ -1,7 +1,11 @@
 package com.example.pojo;
 
+import javax.jdo.annotations.*;
+@PersistenceCapable(detachable = "true")
+
 public class User {
 
+	@PrimaryKey
     private int code;
     private String name;
     private String surname;

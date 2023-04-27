@@ -2,11 +2,16 @@ package com.example.pojo;
 
 import java.util.Map;
 
+import javax.jdo.annotations.*;
+@PersistenceCapable(detachable = "true")
+
 public class Film {
 	
+	@PrimaryKey
 	private int code;
 	private String name;
 	private int year;
+	@Join
 	private Map<Integer, Session> sessions;
 	
 	public Film() {

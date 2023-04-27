@@ -1,5 +1,6 @@
 package com.example.pojo;
 
+
 public class Reservation {
 
 	private int row;
