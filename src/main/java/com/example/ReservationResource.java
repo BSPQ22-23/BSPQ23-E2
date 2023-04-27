@@ -22,5 +22,6 @@ import com.example.pojo.Reservation;
 
 @Path("reservations")
 public class ReservationResource {
+    
 
 }
