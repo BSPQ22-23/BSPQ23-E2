@@ -1,4 +1,4 @@
-package com.example;
+package com.example.server;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
