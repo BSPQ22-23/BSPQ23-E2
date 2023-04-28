@@ -1,5 +1,7 @@
 package com.example.pojo;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.jdo.annotations.*;
@@ -12,13 +14,13 @@ public class Film {
 	private String name;
 	private int year;
 	@Join
-	private Map<Integer, Session> sessions;
+	private ArrayList<Session> sessions;
 	
 	public Film() {
 		
 	}
 	
-	public Film(int code, String name, int year, Map<Integer, Session> sessions) {
+	public Film(int code, String name, int year, ArrayList<Session> sessions) {
 		this.code = code;
 		this.name = name;
 		this.year = year;
@@ -49,11 +51,11 @@ public class Film {
 		this.year = year;
 	}
 	
-	public Map<Integer, Session> getSessions() {
+	public ArrayList<Session> getSessions() {
 		return sessions;
 	}
 	
-	public void setSessions(Map<Integer, Session> sessions) {
+	public void setSessions(ArrayList<Session> sessions) {
 		this.sessions = sessions;
 	}
 
