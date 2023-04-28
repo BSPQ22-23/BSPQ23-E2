@@ -14,21 +14,24 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.example.pojo.User;
+import com.interfaces.LoginWindow;
 
 public class ClientApp {
 
     private static final String SERVER_ENDPOINT = "http://localhost:8080/webapi";
     private static final String USERS_RESOURCE ="users";
     private static final String REGISTER ="users/register";
+    public static Client client = ClientBuilder.newClient();
+    final static WebTarget appTarget = client.target(SERVER_ENDPOINT);
 
     public static void main(String[] args) {
         // create the jersey client and configure the application endpoint
-        Client client = ClientBuilder.newClient();
-        final WebTarget appTarget = client.target(SERVER_ENDPOINT);
+        
+        
 
-
+        
         // sending a POST with a new user
-        try {
+        /*try {
             Response res = appTarget.path(USERS_RESOURCE)
             .queryParam("order", "desc")
             .request(MediaType.APPLICATION_JSON)
@@ -92,9 +95,9 @@ public class ClientApp {
             }
         } catch (ProcessingException e) {
             System.out.format("Error posting a new user. %s%n", e.getMessage());
-        }
+        }*/
         
-        
+     /*   
      // issuing a GET request to the users endpoint with some query parameters
         try {
             Response response = appTarget.path(USERS_RESOURCE)
@@ -197,6 +200,65 @@ public class ClientApp {
             }
         } catch (ProcessingException e) {
             System.out.format("Error logging in. %s%n", e.getMessage());
-        }
+        }*/
+        
+        LoginWindow loginWIndow = new LoginWindow();
+    }
+    
+    public static void newUser(int code, String name, String surename, String email, String password) {
+    	 try {
+             Response res = appTarget.path(USERS_RESOURCE)
+             .queryParam("order", "desc")
+             .request(MediaType.APPLICATION_JSON)
+             .get();
+             int number = 0;
+             // check that the response was HTTP OK
+             if (res.getStatusInfo().toEnum() == Status.OK) {
+                 // the response is a generic type (a List<User>)
+                 GenericType<List<User>> listType = new GenericType<List<User>>(){};
+                 List<User> listusers = res.readEntity(listType);
+                 number = listusers.size();
+             } else {
+                 System.out.format("Error obtaining user list. %s%n", res);
+             }
+
+
+             User user = new User(code, name, surename, email, password);
+             Response response = appTarget.path(REGISTER)
+                 .request(MediaType.APPLICATION_JSON)
+                 .post(Entity.entity(user, MediaType.APPLICATION_JSON)
+             );
+
+             // check if the response was ok
+             if (response.getStatusInfo().toEnum() == Status.OK) {
+                 // obtain the response data (contains a user with the new code)
+                 User userCode = response.readEntity(User.class);
+                 System.out.format("User registered with code %d%n", userCode.getCode());
+             } else {
+                 System.out.format("Error posting a user list. %s%n", response);
+             }
+         } catch (ProcessingException e) {
+             System.out.format("Error posting a new user. %s%n", e.getMessage());
+         }
+          
+         try {
+             User user = new User(0, "John", "Smith", "jonhn@smith.com", "pass1");
+             Response response = appTarget.path(REGISTER)
+                 .request(MediaType.APPLICATION_JSON)
+                 .post(Entity.entity(user, MediaType.APPLICATION_JSON)
+             );
+
+             // check if the response was ok
+             if (response.getStatusInfo().toEnum() == Status.OK) {
+                 // obtain the response data (contains a user with the new code)
+                 User userCode = response.readEntity(User.class);
+                 System.out.format("User registered with code %d%n", userCode.getCode());
+             } else {
+                 System.out.format("Error posting a user list. %s%n", response);
+             }
+         } catch (ProcessingException e) {
+             System.out.format("Error posting a new user. %s%n", e.getMessage());
+         }
+         
     }
 }

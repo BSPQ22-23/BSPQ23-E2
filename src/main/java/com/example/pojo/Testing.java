@@ -11,7 +11,7 @@ import dao.FilmDAO;
 import dao.SessionDAO;
 import dao.UserDAO;
 
-public class test {
+public class Testing {
 
 	@Test
 	public void databaseChecking() {
