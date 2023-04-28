@@ -1,5 +1,5 @@
 package com.example.pojo;
 
-public class test {
+public class Test {
 
 }
