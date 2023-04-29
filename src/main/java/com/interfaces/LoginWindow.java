@@ -6,6 +6,7 @@ import com.example.client.ClientApp;
 
 import java.awt.*;
 import java.awt.event.*;
+import dao.UserDAO;
 
 public class LoginWindow extends JFrame implements ActionListener {
 
@@ -69,11 +70,12 @@ public class LoginWindow extends JFrame implements ActionListener {
             
             
             
+            
         } else if (e.getSource() == loginButton) {
-            String username = usernameField.getText();
+            String email = emailField.getText();
             String password = new String(passwordField.getPassword());
             // Lógica para iniciar sesión con el usuario
-            // ...
+            ClientApp.searchUser(email, password);
         }
         
         
