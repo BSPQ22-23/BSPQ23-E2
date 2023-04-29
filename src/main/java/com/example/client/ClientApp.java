@@ -213,7 +213,7 @@ public class ClientApp {
              .get();
              int number = 0;
              // check that the response was HTTP OK
-             if (res.getStatusInfo().toEnum() == Status.OK) {
+             if (res.getStatusInfo().toEnum() != null) {
                  // the response is a generic type (a List<User>)
                  GenericType<List<User>> listType = new GenericType<List<User>>(){};
                  List<User> listusers = res.readEntity(listType);
@@ -223,7 +223,7 @@ public class ClientApp {
              }
 
 
-             User user = new User(code, name, surename, email, password);
+             User user = new User(number, name, surename, email, password);
              Response response = appTarget.path(REGISTER)
                  .request(MediaType.APPLICATION_JSON)
                  .post(Entity.entity(user, MediaType.APPLICATION_JSON)
@@ -240,7 +240,7 @@ public class ClientApp {
          } catch (ProcessingException e) {
              System.out.format("Error posting a new user. %s%n", e.getMessage());
          }
-          
+          /* 
          try {
              User user = new User(0, "John", "Smith", "jonhn@smith.com", "pass1");
              Response response = appTarget.path(REGISTER)
@@ -259,6 +259,31 @@ public class ClientApp {
          } catch (ProcessingException e) {
              System.out.format("Error posting a new user. %s%n", e.getMessage());
          }
-         
+         */
+    }
+
+    public static void searchUser( String email, String password){
+        try {
+            System.out.println(email);
+            System.out.println(password);
+            Response response = appTarget.path(USERS_RESOURCE)
+                .path("elogin="+ email + "&" + password)
+                .request(MediaType.APPLICATION_JSON)
+                .get();
+             
+                
+
+            // check if the response was ok
+            if (response.getStatusInfo().toEnum() == Status.OK) {
+                // obtain the response data (contains a user with the new code)
+                System.out.println("all ok");
+
+            } else {
+                System.out.format("Error posting a user list. %s%n", response);
+            }
+        } catch (ProcessingException e) {
+            System.out.format("Error posting a new user. %s%n", e.getMessage());
+        }
+
     }
 }
