@@ -13,6 +13,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.example.pojo.User;
 import com.interfaces.LoginWindow;
 
@@ -23,7 +26,8 @@ public class ClientApp {
     private static final String REGISTER ="users/register";
     public static Client client = ClientBuilder.newClient();
     final static WebTarget appTarget = client.target(SERVER_ENDPOINT);
-
+	protected static final Logger logger = LogManager.getLogger();
+    
     public static void main(String[] args) {
         // create the jersey client and configure the application endpoint
         
@@ -233,12 +237,13 @@ public class ClientApp {
              if (response.getStatusInfo().toEnum() == Status.OK) {
                  // obtain the response data (contains a user with the new code)
                  User userCode = response.readEntity(User.class);
-                 System.out.format("User registered with code %d%n", userCode.getCode());
+                 logger.info("User registered with email: '{}'", userCode.getEmail());
              } else {
-                 System.out.format("Error posting a user list. %s%n", response);
+                 logger.info("Error posting a user list. '{}'", response);
              }
          } catch (ProcessingException e) {
              System.out.format("Error posting a new user. %s%n", e.getMessage());
+             logger.info("Error posting a new user. '{}'", e.getMessage());
          }
           /* 
          try {

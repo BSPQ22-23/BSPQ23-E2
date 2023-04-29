@@ -20,11 +20,11 @@ public class Film {
 		
 	}
 	
-	public Film(int code, String name, int year, ArrayList<Session> sessions) {
+	public Film(int code, String name, int year) {
 		this.code = code;
 		this.name = name;
 		this.year = year;
-		this.sessions = sessions;
+		this.sessions = new ArrayList<Session>();
 	}
 	
 	public int getCode() {

@@ -1,5 +1,9 @@
 package com.example.server;
 
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Transaction;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -21,10 +25,19 @@ import java.util.Comparator;
 import com.example.pojo.User;
 import dao.UserDAO;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 @Path("users")
 
 public class UserResource {
-    UserDAO a = UserDAO.getInstance();
+    public static final UserDAO a = UserDAO.getInstance();
+	protected static final Logger logger = LogManager.getLogger();
+	
+	//private int cont = 0;
+	private PersistenceManager pm=null;
+	private Transaction tx=null;
+    
     static List<User> users = new ArrayList<User>();
     public enum Order {
         ASC,
@@ -36,38 +49,33 @@ public class UserResource {
         }
     }
     
+    public UserResource() {
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		this.pm = pmf.getPersistenceManager();
+		this.tx = pm.currentTransaction();
+	}
     
     static User loggedUser;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getUsers(@QueryParam("filter") String str,@QueryParam("order") @DefaultValue("ASC") Order order) {
+    public List<User> getUsers() {
         
         // This data SHOULD be retrieved from a database
         /*users.add(new User(0, "John", "Smith", "jonhn@smith.com", "pass1"));
         users.add(new User(1, "Isaac", "Newton", "isaac@newton.es", "pass2"));
         users.add(new User(2, "Albert", "Einstein", "albert@einstein.es", "pass3"));*/
         
+    	users = UserDAO.getInstance().getAll();
+    	
         System.out.println(users);
         Stream<User> stream = users.stream();
-        // check if the query parameter was passed in the URL
-        if (str != null) {
-            stream = stream.filter(user -> user.getSurname().contains(str));
-        }
-
-        // sort the stream by the passed parameter
-        // as the parameter has a default value there is no need to
-        // check if the parameter is null
-        if (order == Order.DESC) {
-            stream = stream.sorted(Comparator.comparing(User::getSurname).reversed()); //Here is stated that the parameter to compare is 
-        } else {																	   //the surname starting from the last character 
-            stream = stream.sorted(Comparator.comparing(User::getSurname));
-        }
 
         // return the resulting stream as a list
         return stream.collect(Collectors.toList());
     }
-
+    
+    /*
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -85,12 +93,42 @@ public class UserResource {
         a.save(user);
         // return a response containing a user with the user
         return Response.ok(user).build();
-    }
+    }*/
+    
+    
+    //The same metohod but with databse
+    @POST
+	@Path("/register")
+	public Response registerUser(User user) {
+		try
+        {	
+            tx.begin();
+            logger.info("Checking whether the user already exits or not");
+            
+            for (int i=0; i<users.size(); i++) {
+            	if(users.get(i).getEmail().equals(user.getEmail())) {
+            		return Response.status(Response.Status.FORBIDDEN).build();
+            	}
+            }
+            user.setCode(users.size()+1);
+            UserDAO.getInstance().save(user);
+			return Response.ok().build();
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+      
+		}
+	}
     
     @GET
     @Path("/login={name}&{pass}")
     //@Produces(MediaType.APPLICATION_JSON)
     public Response logIn(@PathParam("name") String username, @PathParam("pass") String password) {
+    	
     	for (int i=0; i<users.size(); i++) {
     		System.out.println(username);
     		System.out.println(users.get(i).getName());
@@ -135,7 +173,6 @@ public class UserResource {
     	for (int i=0; i<users.size(); i++) {
     		if (users.get(i).getCode() == code) {
                 System.out.println("Deleting user...");
-                users.remove(i);
                 UserDAO.getInstance().delete(users.get(i));
                 return Response.status(Response.Status.OK).build();
             } else {

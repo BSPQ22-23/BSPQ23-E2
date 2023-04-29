@@ -41,8 +41,8 @@ public class Testing {
 		sessionMap2.add(s3);
 		sessionMap2.add(s4);
 		
-		Film f1 = new Film(1, "PussynBoots", 2023, sessionMap1);
-		Film f2 = new Film(2, "Zhon Vick", 2023, sessionMap2);
+		Film f1 = new Film(1, "PussynBoots", 2023);
+		Film f2 = new Film(2, "Zhon Vick", 2023);
 		
 		FilmDAO.getInstance().save(f1);
 		FilmDAO.getInstance().save(f2);
