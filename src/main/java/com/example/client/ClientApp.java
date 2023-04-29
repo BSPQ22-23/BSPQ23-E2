@@ -267,7 +267,7 @@ public class ClientApp {
          */
     }
 
-    public static void searchUser( String email, String password){
+    public static void esearchUser( String email, String password){
         try {
             System.out.println(email);
             System.out.println(password);
@@ -290,5 +290,51 @@ public class ClientApp {
             System.out.format("Error posting a new user. %s%n", e.getMessage());
         }
 
+    }
+    
+    public static void searchUser( String username, String password){
+        try {
+            System.out.println(username);
+            System.out.println(password);
+            Response response = appTarget.path(USERS_RESOURCE)
+                .path("login="+ username + "&" + password)
+                .request(MediaType.APPLICATION_JSON)
+                .get();
+             
+                
+
+            // check if the response was ok
+            if (response.getStatusInfo().toEnum() == Status.OK) {
+                // obtain the response data (contains a user with the new code)
+                System.out.println("all ok");
+
+            } else {
+                System.out.format("Error posting a user list. %s%n", response);
+            }
+        } catch (ProcessingException e) {
+            System.out.format("Error posting a new user. %s%n", e.getMessage());
+        }
+
+    }
+    
+    public static void loadUsers() {
+    	try {
+            Response response = appTarget.path(USERS_RESOURCE)
+                .queryParam("order", "desc") 
+                .request(MediaType.APPLICATION_JSON)
+                .get();
+
+            // check that the response was HTTP OK
+            if (response.getStatusInfo().toEnum() == Status.OK) {
+                // the response is a generic type (a List<User>)
+                GenericType<List<User>> listType = new GenericType<List<User>>(){};
+                List<User> users = response.readEntity(listType);
+                //System.out.println(users);
+            } else {
+                logger.info("Error obtaining user list. '{}'", response);
+            }
+        } catch (ProcessingException e) {
+            logger.info("Error obtaining user list. '{}'", e.getMessage());
+        }
     }
 }

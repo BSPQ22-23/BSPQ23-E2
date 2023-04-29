@@ -17,6 +17,7 @@ public class LoginWindow extends JFrame implements ActionListener {
     private JTextField surenameField;
     private JButton registerButton;
     private JButton loginButton;
+    private JButton eloginButton;
 
     public LoginWindow() {
         // Configurar la ventana
@@ -30,7 +31,8 @@ public class LoginWindow extends JFrame implements ActionListener {
         emailField = new JTextField(30);
         surenameField = new JTextField(20);
         registerButton = new JButton("Registrarse");
-        loginButton = new JButton("Iniciar sesión");
+        loginButton = new JButton("Iniciar sesión con nombre");
+        eloginButton = new JButton("Iniciar sesión con email");
 
         // Agregar los componentes a la ventana
         Container container = getContentPane();
@@ -54,7 +56,7 @@ public class LoginWindow extends JFrame implements ActionListener {
         // Mostrar la ventana
         setTitle("Login/Register");
     	setLocation(550, 150);
-		setSize(400, 400);
+		setSize(500, 500);
 		setResizable(false);
         setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +64,8 @@ public class LoginWindow extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == registerButton) {
+        	
+        	ClientApp.loadUsers();
         	
             String username = usernameField.getText();
             String password = new String(passwordField.getPassword());
@@ -73,10 +77,22 @@ public class LoginWindow extends JFrame implements ActionListener {
             
             
         } else if (e.getSource() == loginButton) {
+        	
+        	ClientApp.loadUsers();
+        	
             String email = emailField.getText();
             String password = new String(passwordField.getPassword());
             // Lógica para iniciar sesión con el usuario
             ClientApp.searchUser(email, password);
+            
+        } else if (e.getSource() == eloginButton) {
+        	
+        	ClientApp.loadUsers();
+        	
+        	String name = usernameField.getText();
+        	String password = new String(passwordField.getPassword());
+        	
+        	
         }
         
         
