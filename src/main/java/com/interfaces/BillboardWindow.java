@@ -10,7 +10,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JButton[] movieButtons;
-	private static BillboardWindow bw = new BillboardWindow();
+	
 
     public BillboardWindow() {
         // Configurar la ventana
@@ -25,6 +25,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
         ImageIcon jur = new ImageIcon();
         ImageIcon son = new ImageIcon();
         
+        setSize(400, 400);
         
         movieButtons = new JButton[5];
         movieButtons[0] = new JButton("Spider-Man: No Way Home");
@@ -63,11 +64,6 @@ public class BillboardWindow extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-       	bw.setTitle("Billboard");
-    	bw.setVisible(true);
-    	bw.setLocation(550, 150);
-		bw.setSize(400, 400);
-		bw.setResizable(false);
-		bw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        BillboardWindow bw = new BillboardWindow();
     }
 }

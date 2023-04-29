@@ -17,11 +17,9 @@ public class LoginWindow extends JFrame implements ActionListener {
     private JTextField surenameField;
     private JButton registerButton;
     private JButton loginButton;
-    private static LoginWindow lw = new LoginWindow();
 
     public LoginWindow() {
         // Configurar la ventana
-    	setTitle("Login/Register");
         // Crear los componentes
         JLabel usernameLabel = new JLabel("Name:");
         JLabel passwordLabel = new JLabel("Password:");
@@ -54,7 +52,12 @@ public class LoginWindow extends JFrame implements ActionListener {
         loginButton.addActionListener(this);
 
         // Mostrar la ventana
+        setTitle("Login/Register");
+    	setLocation(550, 150);
+		setSize(400, 400);
+		setResizable(false);
         setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -78,13 +81,7 @@ public class LoginWindow extends JFrame implements ActionListener {
         
         
     }
-    
     public static void main(String[] args) {
-    	lw.setTitle("Login/Register");
-    	lw.setVisible(true);
-    	lw.setLocation(550, 150);
-		lw.setSize(400, 400);
-		lw.setResizable(false);
-		lw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     }
+        LoginWindow lw = new LoginWindow();
+      }
 }
