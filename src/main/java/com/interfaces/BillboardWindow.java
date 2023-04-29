@@ -10,22 +10,33 @@ public class BillboardWindow extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JButton[] movieButtons;
+	private static BillboardWindow bw = new BillboardWindow();
 
     public BillboardWindow() {
         // Configurar la ventana
-        setTitle("Cartelera");
-        setSize(300, 400);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+    	setLocation(550,150);
         // Crear los componentes
-        JLabel titleLabel = new JLabel("Cartelera");
+        JLabel titleLabel = new JLabel("Billboard");
         JPanel moviePanel = new JPanel(new GridLayout(0, 1));
+        
+        ImageIcon spid = new ImageIcon("spiderman.jpg");
+        ImageIcon bat = new ImageIcon();
+        ImageIcon ava = new ImageIcon();
+        ImageIcon jur = new ImageIcon();
+        ImageIcon son = new ImageIcon();
+        
+        
         movieButtons = new JButton[5];
         movieButtons[0] = new JButton("Spider-Man: No Way Home");
+        movieButtons[0].setIcon(spid);
         movieButtons[1] = new JButton("The Batman");
+        movieButtons[1].setIcon(bat);
         movieButtons[2] = new JButton("Avatar 2");
+        movieButtons[2].setIcon(ava);
         movieButtons[3] = new JButton("Jurassic World: Dominion");
+        movieButtons[3].setIcon(jur);
         movieButtons[4] = new JButton("Sonic the Hedgehog 2");
+        movieButtons[4].setIcon(son);
 
         // Agregar los componentes a la ventana
         Container container = getContentPane();
@@ -52,6 +63,11 @@ public class BillboardWindow extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        BillboardWindow window = new BillboardWindow();
+       	bw.setTitle("Billboard");
+    	bw.setVisible(true);
+    	bw.setLocation(550, 150);
+		bw.setSize(400, 400);
+		bw.setResizable(false);
+		bw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
