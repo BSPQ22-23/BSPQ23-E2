@@ -48,10 +48,12 @@ public class LoginWindow extends JFrame implements ActionListener {
         
         container.add(registerButton);
         container.add(loginButton);
+        container.add(eloginButton);
 
         // Agregar los listeners a los botones
         registerButton.addActionListener(this);
         loginButton.addActionListener(this);
+        eloginButton.addActionListener(this);
 
         // Mostrar la ventana
         setTitle("Login/Register");
@@ -80,18 +82,19 @@ public class LoginWindow extends JFrame implements ActionListener {
         	
         	ClientApp.loadUsers();
         	
-            String email = emailField.getText();
+            String name = usernameField.getText();
             String password = new String(passwordField.getPassword());
             // Lógica para iniciar sesión con el usuario
-            ClientApp.searchUser(email, password);
+            ClientApp.searchUser(name, password);
             
         } else if (e.getSource() == eloginButton) {
         	
         	ClientApp.loadUsers();
         	
-        	String name = usernameField.getText();
+        	String email = emailField.getText();
         	String password = new String(passwordField.getPassword());
         	
+        	ClientApp.esearchUser(email, password);
         	
         }
         

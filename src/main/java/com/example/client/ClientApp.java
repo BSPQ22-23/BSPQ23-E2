@@ -237,7 +237,7 @@ public class ClientApp {
              if (response.getStatusInfo().toEnum() == Status.OK) {
                  // obtain the response data (contains a user with the new code)
                  User userCode = response.readEntity(User.class);
-                 logger.info("User registered with email: '{}'", userCode.getEmail());
+                 //logger.info("User registered with email: '{}'", userCode.getEmail());
              } else {
                  logger.info("Error posting a user list. '{}'", response);
              }
@@ -269,13 +269,13 @@ public class ClientApp {
 
     public static void esearchUser( String email, String password){
         try {
-            System.out.println(email);
-            System.out.println(password);
+            //System.out.println(email);
+            //ystem.out.println(password);
             Response response = appTarget.path(USERS_RESOURCE)
-                .path("elogin="+ email + "&" + password)
+                .path("/elogin="+ email + "&" + password)
                 .request(MediaType.APPLICATION_JSON)
                 .get();
-             
+             System.out.println(response);
                 
 
             // check if the response was ok
@@ -297,7 +297,7 @@ public class ClientApp {
             System.out.println(username);
             System.out.println(password);
             Response response = appTarget.path(USERS_RESOURCE)
-                .path("login="+ username + "&" + password)
+                .path("/login="+ username + "&" + password)
                 .request(MediaType.APPLICATION_JSON)
                 .get();
              

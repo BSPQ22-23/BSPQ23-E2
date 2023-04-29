@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import com.example.pojo.Film;
+import com.example.pojo.Reservation;
 
 public class FilmDAO extends DataAccessObjectBase implements IDataAccessObject<Film>{
 	
@@ -35,26 +37,8 @@ public class FilmDAO extends DataAccessObjectBase implements IDataAccessObject<F
 	@Override
 	public List<Film> getAll() {
 		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		List<Film> films = new ArrayList<>();
-		try {
-			tx.begin();
-			Extent<Film> extent = pm.getExtent(Film.class, true);
-			for (Film film : extent) {
-				films.add(film);
-			}
-			tx.commit();
-		} catch (Exception e) {
-			System.out.println(" # ERROR GETTING THE FILM.");
-		} finally {
-			if (tx != null && tx.isActive()) {
-			tx.rollback();
-		}
-
-		pm.close();
-	}
-
-	return films;
+        Query<Film> q = pm.newQuery(Film.class);
+        return (List<Film>)q.execute(20);
 	}
 
 	@Override

@@ -128,18 +128,15 @@ public class UserResource {
     @Path("/login={name}&{pass}")
     //@Produces(MediaType.APPLICATION_JSON)
     public Response logIn(@PathParam("name") String username, @PathParam("pass") String password) {
-    	
+    	users = a.getAll(); 
     	for (int i=0; i<users.size(); i++) {
-    		System.out.println(username);
-    		System.out.println(users.get(i).getName());
     		if(users.get(i).getName().equals(username) && users.get(i).getPassword().equals(password)) {
     			
     			System.out.println("User found");
     			loggedUser = users.get(i);
     			System.out.println(users.get(i));
     			return Response.status(Response.Status.OK).build();
-    		} else {
-    			
+    		} else if(users.get(i).getName().equals(username)) { 			
     			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
     		}
     	}
@@ -152,8 +149,7 @@ public class UserResource {
     @Path("/elogin={email}&{pass}")
     //@Produces(MediaType.APPLICATION_JSON)
     public Response elogIn(@PathParam("email") String email, @PathParam("pass") String password) {
-        users = a.getAll();
-        System.out.println(users);
+    	users = a.getAll();         
     	for (int i=0; i<users.size(); i++) {
     		if(users.get(i).getEmail().equals(email) && users.get(i).getPassword().equals(password)) {
     			
@@ -175,8 +171,6 @@ public class UserResource {
                 System.out.println("Deleting user...");
                 UserDAO.getInstance().delete(users.get(i));
                 return Response.status(Response.Status.OK).build();
-            } else {
-                return Response.status(Response.Status.NOT_FOUND).build();
             }
     	}
     	return Response.status(Response.Status.NOT_FOUND).build();

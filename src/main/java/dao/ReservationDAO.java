@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import com.example.pojo.Reservation;
+import com.example.pojo.Session;
 
 public class ReservationDAO extends DataAccessObjectBase implements IDataAccessObject<Reservation>{
 	
@@ -35,26 +37,8 @@ public class ReservationDAO extends DataAccessObjectBase implements IDataAccessO
 	@Override
 	public List<Reservation> getAll() {
 		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		List<Reservation> reservations = new ArrayList<>();
-		try {
-			tx.begin();
-			Extent<Reservation> extent = pm.getExtent(Reservation.class, true);
-			for (Reservation reservation : extent) {
-				reservations.add(reservation);
-			}
-			tx.commit();
-		} catch (Exception e) {
-			System.out.println(" # ERROR GETTING THE RESERVATIONS.");
-		} finally {
-			if (tx != null && tx.isActive()) {
-			tx.rollback();
-		}
-
-		pm.close();
-	}
-
-	return reservations;
+        Query<Reservation> q = pm.newQuery(Reservation.class);
+        return (List<Reservation>)q.execute(20);
 	}
 
 	@Override

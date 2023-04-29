@@ -86,6 +86,7 @@
 					<artifactId>datanucleus-maven-plugin</artifactId>
 					<version>6.0.0-release</version>
 					<configuration>
+						<fork>false</fork>
 						<api>JDO</api>
 						<verbose>true</verbose>
 						<props>${project.basedir}/src/main/resources/datanucleus.properties</props>
