@@ -32,6 +32,7 @@ import org.apache.logging.log4j.LogManager;
 
 
 import com.example.pojo.Film;
+import com.example.pojo.User;
 
 @Path("films")
 public class FilmResource {
@@ -41,9 +42,22 @@ public class FilmResource {
 	private PersistenceManager pm=null;
 	private Transaction tx=null;
 	
+	List<Film> films = new ArrayList<Film>();
+	
 	public FilmResource() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		this.pm = pmf.getPersistenceManager();
 		this.tx = pm.currentTransaction();
 	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+    public List<Film> getFilms() {
+        
+    	films = FilmDAO.getInstance().getAll();
+        Stream<Film> stream = films.stream();
+
+        // return the resulting stream as a list
+        return stream.collect(Collectors.toList());
+    }
 }
