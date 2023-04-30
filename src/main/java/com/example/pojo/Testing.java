@@ -16,9 +16,9 @@ public class Testing {
 	@Test
 	public void databaseChecking() {
 		
-		Session s1 = new Session(1, java.sql.Date.valueOf("2023-05-12"), "12:00");
-		Session s2 = new Session(2, java.sql.Date.valueOf("2023-05-12"), "15:00");
-		Session s3 = new Session(3, java.sql.Date.valueOf("2023-05-12"), "18:00");
+		Session s1 = new Session(1, java.sql.Date.valueOf("2023-05-12 12:00:00"));
+		Session s2 = new Session(2, java.sql.Date.valueOf("2023-05-12 15:00:00"));
+		Session s3 = new Session(3, java.sql.Date.valueOf("2023-05-12 18:00:00"));
 		
 		SessionDAO.getInstance().save(s1);
 		SessionDAO.getInstance().save(s2);
@@ -47,15 +47,15 @@ public class Testing {
 		sessionMap5.add(s3);
 		
 		Film f1 = new Film(1, "Spiderman-No Way Home", 2023);
-		f1.setSessions(sessionMap1);
+//		f1.setSessions(sessionMap1);
 		Film f2 = new Film(2, "The Batman", 2023);
-		f2.setSessions(sessionMap2);
+//		f2.setSessions(sessionMap2);
 		Film f3 = new Film(3, "Avatar 2", 2023);
-		f3.setSessions(sessionMap3);
+//		f3.setSessions(sessionMap3);
 		Film f4 = new Film(4, "Jurassic World:Dominion", 2023);
-		f4.setSessions(sessionMap4);
+//		f4.setSessions(sessionMap4);
 		Film f5 = new Film(5, "Sonic the Hedgehog 2", 2023);
-		f5.setSessions(sessionMap5);
+//		f5.setSessions(sessionMap5);
 		
 		FilmDAO.getInstance().save(f1);
 		FilmDAO.getInstance().save(f2);
@@ -67,7 +67,7 @@ public class Testing {
 		
 
 		
-		//System.out.println(UserDAO.getInstance().getAll());		
+//		System.out.println(FilmDAO.getInstance().getAll());		
 		
 		
 	}

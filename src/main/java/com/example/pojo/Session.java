@@ -15,7 +15,7 @@ public class Session {
 			
 		}
 		
-		public Session(int code, Date date, String time) {
+		public Session(int code, Date date) {
 			this.code = code;
 			this.date = date;
 

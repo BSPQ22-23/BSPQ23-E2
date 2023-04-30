@@ -32,8 +32,8 @@ public class DataAccessObjectBase {
 		Transaction tx = pm.currentTransaction();
 		try {
 			tx.begin();
-			System.out.println("* Storing a "+object.getClass()+" : "+ object);
 			pm.makePersistent(object);
+			System.out.println("* Storing a "+object.getClass()+" : "+ object);
 			tx.commit();
 		} catch (Exception ex) {
 			System.out.println("$ Error storing an object: " + ex.getMessage());
