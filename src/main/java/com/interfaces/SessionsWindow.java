@@ -8,9 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-class SesionesWindow extends JFrame {
+class SessionsWindow extends JFrame {
 	
-    public SesionesWindow(String movieName) {
+    public SessionsWindow(String movieName) {
         // Configurar la ventana
         setTitle(movieName);
         setSize(300, 200);

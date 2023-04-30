@@ -2,7 +2,7 @@ package com.example.pojo;
 
 import java.awt.List;
 import java.util.ArrayList;
-import java.util.Map;
+
 
 import javax.jdo.annotations.*;
 @PersistenceCapable(detachable = "true")
