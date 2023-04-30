@@ -17,7 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.example.pojo.User;
-import com.interfaces.LoginWindow;
+import com.interfaces.*;
 
 public class ClientApp {
 
@@ -27,6 +27,7 @@ public class ClientApp {
     public static Client client = ClientBuilder.newClient();
     final static WebTarget appTarget = client.target(SERVER_ENDPOINT);
 	protected static final Logger logger = LogManager.getLogger();
+    static LoginWindow loginWIndow;
     
     public static void main(String[] args) {
         // create the jersey client and configure the application endpoint
@@ -206,7 +207,7 @@ public class ClientApp {
             System.out.format("Error logging in. %s%n", e.getMessage());
         }*/
         
-        LoginWindow loginWIndow = new LoginWindow();
+        loginWIndow = new LoginWindow();
     }
     
     public static void newUser(int code, String name, String surename, String email, String password) {
@@ -282,7 +283,9 @@ public class ClientApp {
             if (response.getStatusInfo().toEnum() == Status.OK) {
                 // obtain the response data (contains a user with the new code)
                 System.out.println("all ok");
-
+                MainWindow mw = new MainWindow();
+                loginWIndow.dispose();
+                mw.setVisible(true);
             } else {
                 System.out.format("Error posting a user list. %s%n", response);
             }
@@ -307,7 +310,10 @@ public class ClientApp {
             if (response.getStatusInfo().toEnum() == Status.OK) {
                 // obtain the response data (contains a user with the new code)
                 System.out.println("all ok");
-
+                
+                MainWindow mw = new MainWindow();
+                loginWIndow.dispose();
+                mw.setVisible(true);
             } else {
                 System.out.format("Error posting a user list. %s%n", response);
             }

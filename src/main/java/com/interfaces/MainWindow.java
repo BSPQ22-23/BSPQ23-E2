@@ -42,17 +42,18 @@ public class MainWindow extends JFrame {
 		
 		panel.add(bar, BorderLayout.NORTH);
 		add(panel);
+
+		setTitle("MainWindow");
+	    setVisible(true);
+	    setLocation(550, 150);
+		setSize(400, 400);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 	
 	  public static void main(String[] args) {
-		  MainWindow mw = new MainWindow();
-	       	mw.setTitle("MainWindow");
-	    	mw.setVisible(true);
-	    	mw.setLocation(550, 150);
-			mw.setSize(400, 400);
-			mw.setResizable(false);
-			mw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		  MainWindow mw = new MainWindow();	
 	    }
 	
 }
