@@ -44,4 +44,9 @@ public class Session {
 		public void setDate(Date date) {
 			this.date = date;
 		}
+		
+		@Override
+	    public String toString() {
+	        return String.format("%d - %s", date, time);
+	    }
 }

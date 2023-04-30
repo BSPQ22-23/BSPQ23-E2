@@ -54,7 +54,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
                 	 for (int i = 0; i < movieButtons.length; i++) {
                          if (e.getSource() == movieButtons[i]) {
                              String movieName = movieButtons[i].getText();
-                             new SessionsWindow(movieName);
+                             new SessionsWindow(movieName, film);
                              break;
                          }
                      }
