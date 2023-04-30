@@ -38,7 +38,7 @@ public class ReservationResource {
         reservations = r.getAll();
 
         for(Reservation re : reservations){
-            if(reserv.getRow() == re.getRow() && reserv.getSeat() == re.getSeat()){
+            if(reserv.getRow() == re.getRow() && reserv.getSeat() == re.getSeat() && reserv.getSession().getCode() == re.getSession().getCode()){
                 return Response.status(Response.Status.NOT_ACCEPTABLE).build();
             }else{
                 r.save(reserv);

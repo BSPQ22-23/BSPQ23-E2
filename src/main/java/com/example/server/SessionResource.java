@@ -20,9 +20,30 @@ import java.util.Comparator;
 
 import com.example.pojo.Session;
 
+import dao.SessionDAO;
+
 @Path("sessions")
 public class SessionResource {
+    SessionDAO s = SessionDAO.getInstance();
+    static List<Session> sessions = new ArrayList<Session>();
 
-	
+
+	@POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/creation")
+    public Response makeReservation(Session session) {
+        sessions = s.getAll();
+
+        for(Session se : sessions){
+            if((session.getCode() == se.getCode()) && (session.getDate() == se.getDate())){
+                return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+            }else{
+                s.save(session);
+                return Response.status(Response.Status.OK).build();
+            }
+        }
+        return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+    }
 	
 }
