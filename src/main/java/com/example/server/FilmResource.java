@@ -1,5 +1,9 @@
 package com.example.server;
 
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Transaction;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -18,10 +22,28 @@ import java.util.stream.Stream;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import dao.FilmDAO;
+import dao.UserDAO;
+
+import com.interfaces.*;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
+
 import com.example.pojo.Film;
 
 @Path("films")
 public class FilmResource {
-    
+	public static final FilmDAO a = FilmDAO.getInstance();
+	protected static final Logger logger = LogManager.getLogger();
 	
+	private PersistenceManager pm=null;
+	private Transaction tx=null;
+	
+	public FilmResource() {
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		this.pm = pmf.getPersistenceManager();
+		this.tx = pm.currentTransaction();
+	}
 }
