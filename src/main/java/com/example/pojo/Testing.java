@@ -67,7 +67,7 @@ public class Testing {
 		
 
 		
-//		System.out.println(FilmDAO.getInstance().getAll());		
+		System.out.println(FilmDAO.getInstance().getAll());		
 		
 		
 	}
