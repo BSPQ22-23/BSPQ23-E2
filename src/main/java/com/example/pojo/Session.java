@@ -1,8 +1,7 @@
 package com.example.pojo;
 
-import java.sql.Date;
-
 import javax.jdo.annotations.*;
+import java.util.Date;
 @PersistenceCapable(detachable = "true")
 
 public class Session {

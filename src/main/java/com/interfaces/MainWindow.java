@@ -25,6 +25,8 @@ public class MainWindow extends JFrame {
 		bar.add(bBill);
 		JButton bRe = new JButton("Review");
 		bar.add(bRe);
+		JButton bReser = new JButton("Reserve");
+		bar.add(bReser);
 		
 		bBill.addActionListener(new ActionListener() {
 
@@ -35,6 +37,27 @@ public class MainWindow extends JFrame {
 				billw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				billw.setResizable(false);
 				dispose();	
+			}
+			
+			
+		});
+
+		bRe.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					
+			}
+			
+			
+		});
+
+		bReser.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ReservationWindow rw = new ReservationWindow();
 			}
 			
 			
