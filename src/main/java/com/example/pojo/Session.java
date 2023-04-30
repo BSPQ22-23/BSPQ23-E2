@@ -9,7 +9,7 @@ public class Session {
 		@PrimaryKey
 		private int code;
 		private Date date;
-		private String time;
+
 		
 		public Session(){
 			
@@ -18,16 +18,9 @@ public class Session {
 		public Session(int code, Date date, String time) {
 			this.code = code;
 			this.date = date;
-			this.time = time;
-		}
-		
-		public String getTime() {
-			return time;
+
 		}
 
-		public void setTime(String time) {
-			this.time = time;
-		}
 
 		public int getCode() {
 			return code;
@@ -47,6 +40,6 @@ public class Session {
 		
 		@Override
 	    public String toString() {
-	        return String.format("%d - %s", date, time);
+	        return String.format("%s", date);
 	    }
 }
