@@ -76,7 +76,8 @@ public class ReservationWindow extends JFrame implements ActionListener{
                     String session =  dateTextField.getText();
                     int seat = (Integer)firstComboBox.getSelectedItem();
                     int row = (Integer)secondComboBox.getSelectedItem();
-
+                    
+                    Reservation r = new Reservation();
                     
                     dispose();
                     MainWindow mw = new MainWindow();
