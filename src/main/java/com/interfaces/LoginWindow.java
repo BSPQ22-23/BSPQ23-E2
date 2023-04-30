@@ -31,24 +31,32 @@ public class LoginWindow extends JFrame implements ActionListener {
         emailField = new JTextField(30);
         surenameField = new JTextField(20);
         registerButton = new JButton("Registrarse");
+        registerButton.setSize(50,50);
         loginButton = new JButton("Iniciar sesión con nombre");
+        loginButton.setSize(50,50);
         eloginButton = new JButton("Iniciar sesión con email");
+        eloginButton.setSize(50,50);
 
         // Agregar los componentes a la ventana
         Container container = getContentPane();
-        container.setLayout(new GridLayout(3, 2));
-        container.add(usernameLabel);
-        container.add(usernameField);
-        container.add(surenameLabel);
-        container.add(surenameField);
-        container.add(emailLabel);
-        container.add(emailField);
-        container.add(passwordLabel);
-        container.add(passwordField);
+        JPanel labelPanel = new JPanel(new GridLayout(2, 2));
+        labelPanel.add(usernameLabel);
+        labelPanel.add(usernameField);
+        labelPanel.add(surenameLabel);
+        labelPanel.add(surenameField);
+        labelPanel.add(emailLabel);
+        labelPanel.add(emailField);
+        labelPanel.add(passwordLabel);
+        labelPanel.add(passwordField);
         
-        container.add(registerButton);
-        container.add(loginButton);
-        container.add(eloginButton);
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        buttonPanel.add(registerButton);
+        buttonPanel.add(loginButton);
+        buttonPanel.add(eloginButton);
+        JPanel mainPanel = new JPanel(new GridLayout(2, 1));
+        mainPanel.add(labelPanel);
+        mainPanel.add(buttonPanel);
+        container.add(mainPanel);
 
         // Agregar los listeners a los botones
         registerButton.addActionListener(this);
