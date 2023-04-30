@@ -9,16 +9,26 @@ public class Session {
 		@PrimaryKey
 		private int code;
 		private Date date;
+		private String time;
 		
 		public Session(){
 			
 		}
 		
-		public Session(int code, Date date) {
+		public Session(int code, Date date, String time) {
 			this.code = code;
 			this.date = date;
+			this.time = time;
 		}
 		
+		public String getTime() {
+			return time;
+		}
+
+		public void setTime(String time) {
+			this.time = time;
+		}
+
 		public int getCode() {
 			return code;
 		}
