@@ -29,14 +29,14 @@ class SessionsWindow extends JFrame {
         		sessions.add(allSessions.get(i));
         	}
         }
-        // Configurar la ventana
+      
         setTitle(movieName);
         setSize(300, 200);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         List<JLabel> filmLabels = new ArrayList<JLabel>();
         
 
-        // Crear los componentes
+       
         JLabel titleLabel = new JLabel(movieName);
         JPanel sesionesPanel = new JPanel(new GridLayout(sessions.size(), 1));
         for(int i=0; i<sessions.size(); i++) {
@@ -47,7 +47,7 @@ class SessionsWindow extends JFrame {
         //JLabel sesion2Label = new JLabel("Sesión 2: 15:00");
         //JLabel sesion3Label = new JLabel("Sesión 3: 18:00");
 
-        // Agregar los componentes a la ventana
+ 
         Container container = getContentPane();
         container.setLayout(new BorderLayout());
         container.add(titleLabel, BorderLayout.NORTH);
@@ -57,7 +57,7 @@ class SessionsWindow extends JFrame {
         	sesionesPanel.add(filmLabels.get(i));
         }
 
-        // Mostrar la ventana
+    
         setVisible(true);
     }
     

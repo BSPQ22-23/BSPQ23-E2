@@ -21,9 +21,9 @@ public class BillboardWindow extends JFrame implements ActionListener {
 
     public BillboardWindow() {
         films = FilmDAO.getInstance().getAll();
-        // Configurar la ventana
+        
     	setLocation(550,150);
-        // Crear los componentes
+      
         JLabel titleLabel = new JLabel("Billboard");
         JPanel moviePanel = new JPanel(new GridLayout(films.size(), 1));
         
@@ -61,8 +61,8 @@ public class BillboardWindow extends JFrame implements ActionListener {
                      }
                 }
             });
-            movieButtons[i] = button; // agrega el botón al arreglo
-            moviePanel.add(button); // agrega el botón al panel
+            movieButtons[i] = button; 
+            moviePanel.add(button); 
         }
         
        
@@ -78,7 +78,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
     			}
     		});
 
-        // Mostrar la ventana
+      
         setVisible(true);
     }
 
