@@ -224,7 +224,7 @@ public class ClientApp {
                  List<User> listusers = res.readEntity(listType);
                  number = listusers.size();
              } else {
-                 System.out.format("Error obtaining user list. %s%n", res);
+            	 logger.info("Error obtaining user list {}.", res);
              }
 
 
@@ -243,7 +243,6 @@ public class ClientApp {
                  logger.info("Error posting a user list. '{}'", response);
              }
          } catch (ProcessingException e) {
-             System.out.format("Error posting a new user. %s%n", e.getMessage());
              logger.info("Error posting a new user. '{}'", e.getMessage());
          }
           /* 
@@ -276,29 +275,29 @@ public class ClientApp {
                 .path("/elogin="+ email + "&" + password)
                 .request(MediaType.APPLICATION_JSON)
                 .get();
-             System.out.println(response);
                 
 
             // check if the response was ok
             if (response.getStatusInfo().toEnum() == Status.OK) {
                 // obtain the response data (contains a user with the new code)
                 System.out.println("all ok");
+                logger.info("All ok");
                 MainWindow mw = new MainWindow();
                 loginWIndow.dispose();
                 mw.setVisible(true);
             } else {
-                System.out.format("Error posting a user list. %s%n", response);
+                logger.info("Error posting user list: {}", response);
             }
         } catch (ProcessingException e) {
-            System.out.format("Error posting a new user. %s%n", e.getMessage());
+            logger.info("Erro posting a new user: {}", e.getMessage());
         }
 
     }
     
     public static void searchUser( String username, String password){
         try {
-            System.out.println(username);
-            System.out.println(password);
+            logger.info(username);
+            logger.info(password);
             Response response = appTarget.path(USERS_RESOURCE)
                 .path("/login="+ username + "&" + password)
                 .request(MediaType.APPLICATION_JSON)
@@ -310,15 +309,17 @@ public class ClientApp {
             if (response.getStatusInfo().toEnum() == Status.OK) {
                 // obtain the response data (contains a user with the new code)
                 System.out.println("all ok");
+                logger.info("All ok");
                 
                 MainWindow mw = new MainWindow();
                 loginWIndow.dispose();
                 mw.setVisible(true);
             } else {
                 System.out.format("Error posting a user list. %s%n", response);
+                logger.info("Error posting a user list: {}", response);
             }
         } catch (ProcessingException e) {
-            System.out.format("Error posting a new user. %s%n", e.getMessage());
+        	logger.info("Error posting a new user: {}", e.getMessage());
         }
 
     }
