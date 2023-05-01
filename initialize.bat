@@ -1,2 +1,2 @@
-mvn datanucleus:enhance datanucleus:schema-delete datanucleus:schema-create compile jetty:run
+mvn datanucleus:enhance datanucleus:schema-create compile jetty:run
 pause
