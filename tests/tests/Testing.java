@@ -3,6 +3,7 @@ package tests;
 import java.sql.Date;
 import org.junit.Test;
 
+import com.example.pojo.Film;
 import com.example.pojo.Session;
 
 import java.util.ArrayList;

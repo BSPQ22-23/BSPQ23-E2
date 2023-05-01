@@ -1,16 +1,19 @@
 package tests;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class TestClientApp {
+	
+	
 
 	@Before
 	public void setUp() throws Exception {
+		 MockitoAnnotations.openMocks(this);
 	}
 
 	@After
@@ -18,7 +21,7 @@ public class TestClientApp {
 	}
 
 	@Test
-	public void test() {
+	public void testNewUser() {
 		fail("Not yet implemented");
 	}
 

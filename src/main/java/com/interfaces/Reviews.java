@@ -82,6 +82,7 @@ public class Reviews extends JFrame {
                 break;
             default:
                 reviewTextArea.setText("");
+                
         }
     }
 
