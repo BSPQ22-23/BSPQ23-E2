@@ -16,35 +16,42 @@ public class Testing {
 	@Test
 	public void databaseChecking() {
 		
-		Session s1 = new Session(1, java.sql.Date.valueOf("2023-05-12 12:00:00"));
-		Session s2 = new Session(2, java.sql.Date.valueOf("2023-05-12 15:00:00"));
-		Session s3 = new Session(3, java.sql.Date.valueOf("2023-05-12 18:00:00"));
+		Session s1 = new Session(1, java.sql.Date.valueOf("2023-05-12"), "12:00", 1);
+		Session s2 = new Session(2, java.sql.Date.valueOf("2023-05-12"), "15:00", 1);
+		Session s3 = new Session(3, java.sql.Date.valueOf("2023-05-12"), "18:00", 1);
+		
+		Session s4 = new Session(4, java.sql.Date.valueOf("2023-05-12"), "12:00", 2);
+		Session s5 = new Session(5, java.sql.Date.valueOf("2023-05-12"), "15:00", 2);
+		Session s6 = new Session(6, java.sql.Date.valueOf("2023-05-12"), "18:00", 2);
+		
+		Session s7 = new Session(7, java.sql.Date.valueOf("2023-05-12"), "12:00", 3);
+		Session s8 = new Session(8, java.sql.Date.valueOf("2023-05-12"), "15:00", 3);
+		Session s9 = new Session(9, java.sql.Date.valueOf("2023-05-12"), "18:00", 3);
+		
+		Session s10 = new Session(10, java.sql.Date.valueOf("2023-05-12"), "12:00", 4);
+		Session s11 = new Session(11, java.sql.Date.valueOf("2023-05-12"), "15:00", 4);
+		Session s12 = new Session(12, java.sql.Date.valueOf("2023-05-12"), "18:00", 4);
+		
+		Session s13 = new Session(13, java.sql.Date.valueOf("2023-05-12"), "12:00", 5);
+		Session s14 = new Session(14, java.sql.Date.valueOf("2023-05-12"), "15:00", 5);
+		Session s15 = new Session(15, java.sql.Date.valueOf("2023-05-12"), "18:00", 5);
 		
 		SessionDAO.getInstance().save(s1);
 		SessionDAO.getInstance().save(s2);
 		SessionDAO.getInstance().save(s3);
+		SessionDAO.getInstance().save(s4);
+		SessionDAO.getInstance().save(s5);
+		SessionDAO.getInstance().save(s6);
+		SessionDAO.getInstance().save(s7);
+		SessionDAO.getInstance().save(s8);
+		SessionDAO.getInstance().save(s9);
+		SessionDAO.getInstance().save(s10);
+		SessionDAO.getInstance().save(s11);
+		SessionDAO.getInstance().save(s12);
+		SessionDAO.getInstance().save(s13);
+		SessionDAO.getInstance().save(s14);
+		SessionDAO.getInstance().save(s15);
 
-			
-		ArrayList<Session> sessionMap1 = new ArrayList<Session>();
-		sessionMap1.add(s1);
-		sessionMap1.add(s2);
-		sessionMap1.add(s3);
-		ArrayList<Session> sessionMap2 = new ArrayList<Session>();
-		sessionMap2.add(s1);
-		sessionMap2.add(s2);
-		sessionMap2.add(s3);
-		ArrayList<Session> sessionMap3 = new ArrayList<Session>();
-		sessionMap3.add(s1);
-		sessionMap3.add(s2);
-		sessionMap3.add(s3);
-		ArrayList<Session> sessionMap4 = new ArrayList<Session>();
-		sessionMap4.add(s1);
-		sessionMap4.add(s2);
-		sessionMap4.add(s3);
-		ArrayList<Session> sessionMap5 = new ArrayList<Session>();
-		sessionMap5.add(s1);
-		sessionMap5.add(s2);
-		sessionMap5.add(s3);
 		
 		Film f1 = new Film(1, "Spiderman-No Way Home", 2023);
 //		f1.setSessions(sessionMap1);

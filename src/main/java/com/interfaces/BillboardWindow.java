@@ -20,11 +20,12 @@ public class BillboardWindow extends JFrame implements ActionListener {
 	private List<Film> films;
 
     public BillboardWindow() {
+        films = FilmDAO.getInstance().getAll();
         // Configurar la ventana
     	setLocation(550,150);
         // Crear los componentes
         JLabel titleLabel = new JLabel("Billboard");
-        JPanel moviePanel = new JPanel(new GridLayout(0, 1));
+        JPanel moviePanel = new JPanel(new GridLayout(films.size(), 1));
         
         ImageIcon spid = new ImageIcon("spiderman.jpg");
         ImageIcon bat = new ImageIcon();
@@ -34,7 +35,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
         
         setSize(400, 400);
     
-        films = FilmDAO.getInstance().getAll();
+        movieButtons = new JButton[films.size()]; 
         
      
         JPanel binf = new JPanel();
@@ -50,7 +51,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
             Film film = films.get(i);
             JButton button = new JButton(film.getName()); 
             button.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e) {              	
                 	 for (int i = 0; i < movieButtons.length; i++) {
                          if (e.getSource() == movieButtons[i]) {
                              String movieName = movieButtons[i].getText();
@@ -61,7 +62,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
                 }
             });
             movieButtons[i] = button; // agrega el botón al arreglo
-            add(button); // agrega el botón al panel
+            moviePanel.add(button); // agrega el botón al panel
         }
         
        

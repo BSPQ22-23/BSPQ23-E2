@@ -12,11 +12,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.example.pojo.Film;
+import com.example.pojo.Session;
+
+import dao.SessionDAO;
 
 class SessionsWindow extends JFrame {
+	List<Session> allSessions;
+	List<Session> sessions;
 	
 	
     public SessionsWindow(String movieName, Film film) {
+    	allSessions = SessionDAO.getInstance().getAll();
+    	sessions = new ArrayList<Session>();
+    	for(int i=0; i<allSessions.size(); i++) {
+        	if (allSessions.get(i).getFilm() == film.getCode()) {
+        		sessions.add(allSessions.get(i));
+        	}
+        }
         // Configurar la ventana
         setTitle(movieName);
         setSize(300, 200);
@@ -26,9 +38,9 @@ class SessionsWindow extends JFrame {
 
         // Crear los componentes
         JLabel titleLabel = new JLabel(movieName);
-        JPanel sesionesPanel = new JPanel(new GridLayout(0, 1));
-        for(int i=0; i<film.getSessions().size(); i++) {
-        	JLabel sessionLabel =  new JLabel(film.getSessions().get(i).toString());
+        JPanel sesionesPanel = new JPanel(new GridLayout(sessions.size(), 1));
+        for(int i=0; i<sessions.size(); i++) {
+        	JLabel sessionLabel =  new JLabel(sessions.get(i).toString());
         	filmLabels.add(sessionLabel);
         }
         //JLabel sesion1Label = new JLabel("Sesión 1: 12:00");

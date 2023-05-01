@@ -13,8 +13,6 @@ public class Film {
 	private int code;
 	private String name;
 	private int year;
-	@Join
-	private ArrayList<Session> sessions;
 	
 	public Film() {
 		
@@ -24,7 +22,6 @@ public class Film {
 		this.code = code;
 		this.name = name;
 		this.year = year;
-		this.sessions = new ArrayList<Session>();
 	}
 	
 	public int getCode() {
@@ -51,12 +48,5 @@ public class Film {
 		this.year = year;
 	}
 	
-	public ArrayList<Session> getSessions() {
-		return sessions;
-	}
-	
-	public void setSessions(ArrayList<Session> sessions) {
-		this.sessions = sessions;
-	}
 
 }
