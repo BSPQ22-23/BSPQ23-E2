@@ -154,9 +154,9 @@ public class UserResource {
     	for (int i=0; i<users.size(); i++) {
     		if(users.get(i).getEmail().equals(email) && users.get(i).getPassword().equals(password)) {
     			
-    			System.out.println("User found");
+    			logger.info("User found");
     			loggedUser = users.get(i);
-    			System.out.println(users.get(i));
+    			logger.info(users.get(i));
     			return Response.status(Response.Status.OK).build();
     		}
     	}
@@ -169,7 +169,7 @@ public class UserResource {
     public Response deleteUser(@PathParam("code") int code) {
     	for (int i=0; i<users.size(); i++) {
     		if (users.get(i).getCode() == code) {
-                System.out.println("Deleting user...");
+                logger.info("Deleting user...");
                 UserDAO.getInstance().delete(users.get(i));
                 return Response.status(Response.Status.OK).build();
             }
