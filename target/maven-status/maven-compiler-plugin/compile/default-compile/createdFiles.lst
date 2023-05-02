@@ -18,7 +18,6 @@ com\example\client\ClientApp.class
 com\example\pojo\Session.class
 com\example\server\UserResource.class
 com\interfaces\BillboardWindow$2.class
-com\example\pojo\Testing.class
 com\interfaces\MainWindow$2.class
 com\interfaces\ReservationWindow$3.class
 com\interfaces\Reviews.class
