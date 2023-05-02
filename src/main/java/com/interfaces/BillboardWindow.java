@@ -28,10 +28,10 @@ public class BillboardWindow extends JFrame implements ActionListener {
         JPanel moviePanel = new JPanel(new GridLayout(films.size(), 1));
         
         ImageIcon spid = new ImageIcon("spiderman.jpg");
-        ImageIcon bat = new ImageIcon();
-        ImageIcon ava = new ImageIcon();
-        ImageIcon jur = new ImageIcon();
-        ImageIcon son = new ImageIcon();
+        ImageIcon bat = new ImageIcon("batman.jpg");
+        ImageIcon ava = new ImageIcon("avatar.jpg");
+        ImageIcon jur = new ImageIcon("dinosaurios.jpg");
+        ImageIcon son = new ImageIcon("sonic.jpg");
         
         setSize(400, 400);
     
