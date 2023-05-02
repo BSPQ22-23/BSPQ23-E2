@@ -4,8 +4,12 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 //This class defines the basic methods of the DAO pattern.
 public class DataAccessObjectBase {	
+	protected static final Logger logger = LogManager.getLogger();
 	protected static PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	
 	public void deleteObject(Object object) {
@@ -17,7 +21,7 @@ public class DataAccessObjectBase {
 			pm.deletePersistent(object);			
 			tx.commit();
 		} catch (Exception ex) {
-			System.out.println("$ Error deleting an object: " + ex.getMessage());
+			logger.info("$ Error deleting an object: " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
@@ -33,10 +37,10 @@ public class DataAccessObjectBase {
 		try {
 			tx.begin();
 			pm.makePersistent(object);
-			System.out.println("* Storing a "+object.getClass()+" : "+ object);
+			logger.info("* Storing a "+object.getClass()+" : "+ object);
 			tx.commit();
 		} catch (Exception ex) {
-			System.out.println("$ Error storing an object: " + ex.getMessage());
+			logger.info("$ Error storing an object: " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
