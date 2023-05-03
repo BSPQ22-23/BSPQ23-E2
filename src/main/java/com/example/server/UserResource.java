@@ -69,7 +69,7 @@ public class UserResource {
         
     	users = UserDAO.getInstance().getAll();
     	
-        System.out.println(users);
+       
         Stream<User> stream = users.stream();
 
         // return the resulting stream as a list
@@ -133,9 +133,8 @@ public class UserResource {
     	for (int i=0; i<users.size(); i++) {
     		if(users.get(i).getName().equals(username) && users.get(i).getPassword().equals(password)) {
     			
-    			System.out.println("User found");
     			loggedUser = users.get(i);
-    			System.out.println(users.get(i));
+    			
     			return Response.status(Response.Status.OK).build();
     		} else if(users.get(i).getName().equals(username)) { 			
     			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
