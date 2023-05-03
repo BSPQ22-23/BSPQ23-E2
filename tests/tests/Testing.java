@@ -57,15 +57,10 @@ public class Testing {
 
 		
 		Film f1 = new Film(1, "Spiderman-No Way Home", 2023);
-//		f1.setSessions(sessionMap1);
 		Film f2 = new Film(2, "The Batman", 2023);
-//		f2.setSessions(sessionMap2);
 		Film f3 = new Film(3, "Avatar 2", 2023);
-//		f3.setSessions(sessionMap3);
 		Film f4 = new Film(4, "Jurassic World:Dominion", 2023);
-//		f4.setSessions(sessionMap4);
 		Film f5 = new Film(5, "Sonic the Hedgehog 2", 2023);
-//		f5.setSessions(sessionMap5);
 		
 		FilmDAO.getInstance().save(f1);
 		FilmDAO.getInstance().save(f2);
@@ -74,9 +69,6 @@ public class Testing {
 		FilmDAO.getInstance().save(f5);
 
 
-		
-
-		
 		System.out.println(FilmDAO.getInstance().getAll());		
 		
 		
