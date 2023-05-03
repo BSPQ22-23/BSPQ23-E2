@@ -80,4 +80,10 @@ public class User {
     public String toString() {
         return String.format("%d - %s %s", code, name, surname);
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+    	// TODO Auto-generated method stub
+    	return this.code == ((User)obj).getCode();
+    }
 }
