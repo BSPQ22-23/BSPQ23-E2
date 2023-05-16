@@ -1,0 +1,13 @@
+digraph "com.example.server.ReservationResource.makeReservation"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="com.example.server.Reservation\lResource.makeReservation",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="dao.ReservationDAO.getAll",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classdao_1_1_reservation_d_a_o.html#a7e4884a5f9ba34c90292e56c2f19a9cc",tooltip=" "];
+  Node1 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="dao.ReservationDAO.save",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classdao_1_1_reservation_d_a_o.html#a6a03a7f0dfcd160b6c8fd7399870636d",tooltip=" "];
+}

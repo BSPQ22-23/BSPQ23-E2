@@ -1,0 +1,20 @@
+digraph "com.example.client.ClientApp"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="com.example.client.ClientApp",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" client" ];
+  Node2 [label="Client",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" appTarget" ];
+  Node3 [label="WebTarget",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" logger" ];
+  Node4 [label="Logger",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" loginWIndow" ];
+  Node5 [label="com.interfaces.LoginWindow",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classcom_1_1interfaces_1_1_login_window.html",tooltip=" "];
+  Node6 -> Node5 [dir="back",color="steelblue1",style="solid"];
+  Node6 [label="JFrame",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node7 -> Node5 [dir="back",color="steelblue1",style="solid"];
+  Node7 [label="ActionListener",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+}

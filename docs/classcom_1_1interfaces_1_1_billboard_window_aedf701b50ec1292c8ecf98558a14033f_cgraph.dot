@@ -1,0 +1,19 @@
+digraph "com.interfaces.BillboardWindow.main"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="com.interfaces.Billboard\lWindow.main",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="com.interfaces.Billboard\lWindow.BillboardWindow",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcom_1_1interfaces_1_1_billboard_window.html#aea6233c692d305f4da01fd0a30821af4",tooltip=" "];
+  Node2 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="com.interfaces.Billboard\lWindow.actionPerformed",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcom_1_1interfaces_1_1_billboard_window.html#a442b7d427a7303507f794fe0fd7c4c0b",tooltip=" "];
+  Node2 -> Node4 [color="steelblue1",style="solid"];
+  Node4 [label="dao.FilmDAO.getAll",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classdao_1_1_film_d_a_o.html#aed7fbc8a99f0f11b80920b755db3d780",tooltip=" "];
+  Node2 -> Node5 [color="steelblue1",style="solid"];
+  Node5 [label="dao.FilmDAO.getInstance",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classdao_1_1_film_d_a_o.html#a21fcd7322ade804cd39cad7a0f9b2274",tooltip=" "];
+  Node2 -> Node6 [color="steelblue1",style="solid"];
+  Node6 [label="com.example.pojo.Film.getName",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcom_1_1example_1_1pojo_1_1_film.html#a839df5ce199ed451b8707a816c4629a7",tooltip=" "];
+}

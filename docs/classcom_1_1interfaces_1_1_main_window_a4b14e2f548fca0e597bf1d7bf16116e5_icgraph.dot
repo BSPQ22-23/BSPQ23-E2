@@ -1,0 +1,11 @@
+digraph "com.interfaces.MainWindow.MainWindow"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [label="com.interfaces.MainWindow.\lMainWindow",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="com.interfaces.MainWindow.main",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcom_1_1interfaces_1_1_main_window.html#aa9717ef0b6b64e375f42ea39cd630371",tooltip=" "];
+}

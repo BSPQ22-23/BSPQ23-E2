@@ -1,0 +1,16 @@
+digraph "/Users/charlottesoltysiak/Documents/GitHub/BSPQ23-E2/src/main"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_1fa29455f72088f17c69236d03eca89e {
+    graph [ bgcolor="#eef1f8", pencolor="grey50", label="src", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_1fa29455f72088f17c69236d03eca89e.html",tooltip=""]
+  subgraph clusterdir_5a833a8e4b8c55cab3e419e68a9f1e98 {
+    graph [ bgcolor="#eef1f8", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_5a833a8e4b8c55cab3e419e68a9f1e98.html",tooltip=""]
+    dir_5a833a8e4b8c55cab3e419e68a9f1e98 [shape=plaintext, label="main"];
+  dir_ffc17dfa9a1eb1bb327edbf2d9b6dad3 [label="java", fillcolor="#a7b7de", color="grey25", style="filled", URL="dir_ffc17dfa9a1eb1bb327edbf2d9b6dad3.html",tooltip=""];
+  }
+  }
+}

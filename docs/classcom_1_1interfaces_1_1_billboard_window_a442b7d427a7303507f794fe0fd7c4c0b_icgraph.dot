@@ -1,0 +1,13 @@
+digraph "com.interfaces.BillboardWindow.actionPerformed"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [label="com.interfaces.Billboard\lWindow.actionPerformed",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="com.interfaces.Billboard\lWindow.BillboardWindow",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcom_1_1interfaces_1_1_billboard_window.html#aea6233c692d305f4da01fd0a30821af4",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="steelblue1",style="solid"];
+  Node3 [label="com.interfaces.Billboard\lWindow.main",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcom_1_1interfaces_1_1_billboard_window.html#aedf701b50ec1292c8ecf98558a14033f",tooltip=" "];
+}

@@ -1,0 +1,25 @@
+digraph "dao.UserDAO.getInstance"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [label="dao.UserDAO.getInstance",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="com.example.server.UserResource.deleteUser",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcom_1_1example_1_1server_1_1_user_resource.html#aa42fd426dffe2a7f95a68a3659b1ab41",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="steelblue1",style="solid"];
+  Node3 [label="com.example.server.UserResource.get\lUsers",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcom_1_1example_1_1server_1_1_user_resource.html#a50fea555fe469fe6771a2480cd4db9e1",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="steelblue1",style="solid"];
+  Node4 [label="tests.TestClientApp.load\lUsers",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtests_1_1_test_client_app.html#a0d9e4cff8ed784243902a869fafcf173",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="steelblue1",style="solid"];
+  Node5 [label="tests.TestClientApp.logIn",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtests_1_1_test_client_app.html#a786265f6982814de0aed18e49095e7a6",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="steelblue1",style="solid"];
+  Node6 [label="com.example.server.UserResource.registerUser",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcom_1_1example_1_1server_1_1_user_resource.html#ab5da9f701dd1409be93cfce877f3a0cd",tooltip=" "];
+  Node1 -> Node7 [dir="back",color="steelblue1",style="solid"];
+  Node7 [label="tests.TestClientApp.test\lNewUser",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtests_1_1_test_client_app.html#a9e097520337e85cea5564fcc6c439a1d",tooltip=" "];
+  Node1 -> Node8 [dir="back",color="steelblue1",style="solid"];
+  Node8 [label="tests.TestPerformance.test\lUserSave",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtests_1_1_test_performance.html#a3f68efbcad4c1b461440bee2aa9c3be6",tooltip=" "];
+  Node1 -> Node9 [dir="back",color="steelblue1",style="solid"];
+  Node9 [label="tests.TestPerformance.test\lUserSaveFail",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtests_1_1_test_performance.html#a23f3077b7f3cfbae503fee5bc701bd6d",tooltip=" "];
+}
