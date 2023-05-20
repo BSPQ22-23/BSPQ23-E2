@@ -3,6 +3,8 @@ package com.interfaces;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,6 +20,7 @@ public class Reviews extends JFrame {
 
 	private static final long serialVersionUID = 1L;
     private JComboBox<String> moviesComboBox;
+    private JComboBox<String> langComboBox;
     private JTextArea reviewTextArea;
 
     public Reviews() {
@@ -27,6 +30,9 @@ public class Reviews extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         String[] movies = { "Star Wars", "The Godfather", "Goodfellas", "La La Land", "Cars" };
+        String[] lang = { "Español", "Francais", "English" };
+        langComboBox = new JComboBox<>(lang);
+        langComboBox.addActionListener(e -> changeLan());
         moviesComboBox = new JComboBox<>(movies);
         moviesComboBox.addActionListener(e -> showReview());
         reviewTextArea = new JTextArea(10, 30);
@@ -43,6 +49,7 @@ public class Reviews extends JFrame {
         JPanel panel = new JPanel();
         panel.add(new JLabel("Select a movie:"));
         panel.add(moviesComboBox);
+        panel.add(langComboBox);
         panel.add(new JScrollPane(reviewTextArea));
         add(panel);
         setVisible(true);
@@ -63,10 +70,13 @@ public class Reviews extends JFrame {
     private void showReview() {
 
         String movie = (String) moviesComboBox.getSelectedItem();
+        
+        
+        ResourceBundle bundle = ResourceBundle.getBundle("language", Locale.getDefault());
 
         switch (movie) {
             case "Star Wars":
-                reviewTextArea.setText("Star Wars Episode IV is an epic space opera film directed by George Lucas. Released in 1977, it follows the journey of Luke Skywalker as he joins the Rebel Alliance in their fight against the evil Galactic Empire. The film is known for its groundbreaking visual effects, iconic characters such as Darth Vader and Princess Leia, and its memorable score composed by John Williams. With a thrilling story and a sense of adventure that has captivated audiences for decades, Star Wars Episode IV is a true classic of cinema.");
+                reviewTextArea.setText(bundle.getString("starwars_review"));
                 break;
             case "The Godfather":
                 reviewTextArea.setText("The Godfather is a timeless classic of cinema directed by Francis Ford Coppola. Released in 1972, it tells the story of the Corleone family, a powerful Italian-American mafia family in New York City. The film is known for its brilliant performances by Marlon Brando, Al Pacino, and James Caan, as well as its iconic scenes and memorable dialogue. With themes of family, loyalty, and betrayal, The Godfather is a masterpiece of storytelling that continues to captivate audiences to this day.");
@@ -84,6 +94,29 @@ public class Reviews extends JFrame {
                 reviewTextArea.setText("");
                 
         }
+    }
+    
+    private void changeLan() {
+
+        String lang = (String) langComboBox.getSelectedItem();
+        Locale locale;
+        switch (lang) {
+            case "Español":
+            	locale = new Locale("es");
+                break;
+            case "Francais":
+            	locale = new Locale("fr");    
+            	break;
+            case "English":
+            	locale = new Locale("en"); 
+            	break;  
+            default:
+            	locale = Locale.getDefault();
+          
+        }
+        
+        Locale.setDefault(locale);
+        showReview();
     }
 
     public static void main(String[] args) {
