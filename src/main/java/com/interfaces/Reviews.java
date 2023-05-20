@@ -79,16 +79,16 @@ public class Reviews extends JFrame {
                 reviewTextArea.setText(bundle.getString("starwars_review"));
                 break;
             case "The Godfather":
-                reviewTextArea.setText("The Godfather is a timeless classic of cinema directed by Francis Ford Coppola. Released in 1972, it tells the story of the Corleone family, a powerful Italian-American mafia family in New York City. The film is known for its brilliant performances by Marlon Brando, Al Pacino, and James Caan, as well as its iconic scenes and memorable dialogue. With themes of family, loyalty, and betrayal, The Godfather is a masterpiece of storytelling that continues to captivate audiences to this day.");
+                reviewTextArea.setText(bundle.getString("godfather_review"));
                 break;
             case "Goodfellas":
-                reviewTextArea.setText("Goodfellas is a gripping crime drama film directed by Martin Scorsese. Released in 1990, it tells the story of Henry Hill, a young man who rises through the ranks of the Italian-American mafia in New York City. The film is known for its raw and realistic portrayal of the mafia lifestyle, as well as its stellar cast including Robert De Niro, Joe Pesci, and Ray Liotta. With its expert direction, incredible performances, and unforgettable scenes, Goodfellas is a true masterpiece of cinema and a must-watch for fans of the genre.");
+                reviewTextArea.setText(bundle.getString("goodfellas_review"));
                 break;
             case "La La Land":
-                reviewTextArea.setText("La La Land is a modern musical film directed by Damien Chazelle. Released in 2016, it tells the story of Mia, an aspiring actress, and Sebastian, a jazz pianist, as they pursue their dreams in Los Angeles. The film is known for its vibrant and colorful cinematography, catchy songs, and incredible performances by Emma Stone and Ryan Gosling. With a nostalgic nod to classic Hollywood musicals, La La Land is a charming and uplifting film that will leave you humming its tunes long after the credits roll.");
+                reviewTextArea.setText(bundle.getString("lalaland_review"));
                 break;
             case "Cars":
-                reviewTextArea.setText("Cars is a delightful animated movie produced by Pixar Animation Studios. Released in 2006, it tells the story of Lightning McQueen, a hotshot race car who finds himself stranded in a small town called Radiator Springs. The film is known for its stunning visuals, lovable characters, and heartwarming themes of friendship and self-discovery. With an all-star voice cast that includes Owen Wilson, Paul Newman, and Bonnie Hunt, Cars is a fun-filled adventure that will entertain audiences of all ages.");
+                reviewTextArea.setText(bundle.getString("cars_review"));
                 break;
             default:
                 reviewTextArea.setText("");
