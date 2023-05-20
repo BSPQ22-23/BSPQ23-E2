@@ -22,7 +22,7 @@ public class Reviews extends JFrame {
     private JComboBox<String> moviesComboBox;
     private JComboBox<String> langComboBox;
     private JTextArea reviewTextArea;
-
+    private JButton back;
     public Reviews() {
         setTitle("Reviews");
         setLocation(600,250);
@@ -30,7 +30,7 @@ public class Reviews extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         String[] movies = { "Star Wars", "The Godfather", "Goodfellas", "La La Land", "Cars" };
-        String[] lang = { "Español", "Francais", "English" };
+        String[] lang = { "English", "Español", "Francais" };
         langComboBox = new JComboBox<>(lang);
         langComboBox.addActionListener(e -> changeLan());
         moviesComboBox = new JComboBox<>(movies);
@@ -43,7 +43,7 @@ public class Reviews extends JFrame {
         JPanel panelInf = new JPanel();
 		panelInf.setLayout(new BorderLayout());
 		getContentPane().add( panelInf, BorderLayout.SOUTH );
-		JButton back = new JButton("Back");
+		back = new JButton();
 		panelInf.add(back);
 
         JPanel panel = new JPanel();
@@ -54,7 +54,7 @@ public class Reviews extends JFrame {
         add(panel);
         setVisible(true);
         
-        
+        changeUi();
 		
 		back.addActionListener(new ActionListener() {
 
@@ -66,14 +66,13 @@ public class Reviews extends JFrame {
 			}
 		});
     }
+  
 
     private void showReview() {
 
         String movie = (String) moviesComboBox.getSelectedItem();
         
-        
         ResourceBundle bundle = ResourceBundle.getBundle("language", Locale.getDefault());
-
         switch (movie) {
             case "Star Wars":
                 reviewTextArea.setText(bundle.getString("starwars_review"));
@@ -101,25 +100,33 @@ public class Reviews extends JFrame {
         String lang = (String) langComboBox.getSelectedItem();
         Locale locale;
         switch (lang) {
-            case "Español":
-            	locale = new Locale("es");
-                break;
-            case "Francais":
-            	locale = new Locale("fr");    
-            	break;
             case "English":
-            	locale = new Locale("en"); 
+            	locale = new Locale("en");
+                break;
+            case "Español":
+            	locale = new Locale("es");    
+            	break;
+            case "Francais":
+            	locale = new Locale("fr"); 
             	break;  
             default:
-            	locale = Locale.getDefault();
+            	locale = Locale.ENGLISH;
           
         }
         
         Locale.setDefault(locale);
         showReview();
+        changeUi();
     }
 
-    public static void main(String[] args) {
+    private void changeUi() {
+    	 ResourceBundle bundle = ResourceBundle.getBundle("language");
+    	 String backText = bundle.getString("back_button");
+    	 back.setText(backText);
+		
+	}
+
+	public static void main(String[] args) {
         new Reviews();
     }
 

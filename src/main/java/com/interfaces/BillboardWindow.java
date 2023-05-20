@@ -8,6 +8,8 @@ import com.example.server.FilmResource;
 import dao.FilmDAO;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -18,17 +20,24 @@ public class BillboardWindow extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JButton[] movieButtons;
 	private List<Film> films;
+	private JLabel titleLabel;
+	private JButton buscar;
+	private JButton back;
+	private JComboBox langComboBox;
 
     public BillboardWindow() {
         films = FilmDAO.getInstance().getAll();
         
     	setLocation(550,150);
-      
-        JLabel titleLabel = new JLabel("Billboard");
+    	
+    	String[] lang = { "English", "Español", "Francais" };
+        langComboBox = new JComboBox<>(lang);
+        langComboBox.addActionListener(e -> changeLan());
+        titleLabel = new JLabel();
         JTextField searchField = new JTextField("Search");
         JPanel moviePanel = new JPanel(new GridLayout(films.size(), 1));
-        JButton buscar = new JButton("Search");
-        JButton back = new JButton("Back");
+        buscar = new JButton();
+        back = new JButton();
         
         
         
@@ -57,6 +66,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
         container.add(moviePanel, BorderLayout.CENTER);
         container.add(binf, BorderLayout.SOUTH);
         
+        changeUi();
         
         for (int i = 0; i < films.size(); i++) {
             Film film = films.get(i);
@@ -107,6 +117,37 @@ public class BillboardWindow extends JFrame implements ActionListener {
         setVisible(true);
     }
     
+    private void changeLan() {
+
+        String lang = (String) langComboBox.getSelectedItem();
+        Locale locale;
+        switch (lang) {
+            case "English":
+            	locale = new Locale("en");
+                break;
+            case "Español":
+            	locale = new Locale("es");    
+            	break;
+            case "Francais":
+            	locale = new Locale("fr"); 
+            	break;  
+            default:
+            	locale = Locale.ENGLISH;
+          
+        }
+        
+        Locale.setDefault(locale);
+        changeUi();
+    }
+    
+    private void changeUi() {
+   	 ResourceBundle bundle = ResourceBundle.getBundle("language");
+   	 String backText = bundle.getString("back_button");
+   	 String busText = bundle.getString("search_button");
+   	 buscar.setText(busText);
+   	 back.setText(backText);
+		
+	}
 
     
     
