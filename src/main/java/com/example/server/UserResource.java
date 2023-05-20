@@ -22,6 +22,7 @@ import java.util.stream.Stream;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import com.example.client.ClientApp;
 import com.example.pojo.User;
 import dao.UserDAO;
 import com.interfaces.*;
@@ -134,7 +135,7 @@ public class UserResource {
     		if(users.get(i).getName().equals(username) && users.get(i).getPassword().equals(password)) {
     			
     			loggedUser = users.get(i);
-    			
+    			ReservationResource.loggedUser = users.get(i);
     			return Response.status(Response.Status.OK).build();
     		} else if(users.get(i).getName().equals(username)) { 			
     			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
@@ -155,6 +156,8 @@ public class UserResource {
     			
     			logger.info("User found");
     			loggedUser = users.get(i);
+    			ReservationResource.loggedUser = users.get(i);
+    			
     			logger.info(users.get(i));
     			return Response.status(Response.Status.OK).build();
     		}

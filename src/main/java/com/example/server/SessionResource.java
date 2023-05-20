@@ -32,7 +32,7 @@ public class SessionResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/creation")
-    public Response makeReservation(Session session) {
+    public Response makeSession(Session session) {
         sessions = s.getAll();
 
         for(Session se : sessions){

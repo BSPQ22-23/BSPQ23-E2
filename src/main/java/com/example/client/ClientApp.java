@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.example.pojo.User;
+import com.example.pojo.*;
 import com.interfaces.*;
 
 public class ClientApp {
@@ -24,10 +24,12 @@ public class ClientApp {
     private static final String SERVER_ENDPOINT = "http://localhost:8080/webapi";
     private static final String USERS_RESOURCE ="users";
     private static final String REGISTER ="users/register";
+    private static final String Reservation ="reservations";
     public static Client client = ClientBuilder.newClient();
     final static WebTarget appTarget = client.target(SERVER_ENDPOINT);
 	protected static final Logger logger = LogManager.getLogger();
     static LoginWindow loginWIndow;
+    static User loggedUser;
     
     public static void main(String[] args) {
         // create the jersey client and configure the application endpoint
@@ -231,8 +233,7 @@ public class ClientApp {
              User user = new User(number, name, surename, email, password);
              Response response = appTarget.path(REGISTER)
                  .request(MediaType.APPLICATION_JSON)
-                 .post(Entity.entity(user, MediaType.APPLICATION_JSON)
-             );
+                 .post(Entity.entity(user, MediaType.APPLICATION_JSON));
 
              // check if the response was ok
              if (response.getStatusInfo().toEnum() == Status.OK) {
@@ -308,7 +309,7 @@ public class ClientApp {
             // check if the response was ok
             if (response.getStatusInfo().toEnum() == Status.OK) {
                 // obtain the response data (contains a user with the new code)
-                System.out.println("all ok");
+                //System.out.println("all ok");
                 logger.info("All ok");
                 
                 MainWindow mw = new MainWindow();
@@ -342,6 +343,27 @@ public class ClientApp {
             }
         } catch (ProcessingException e) {
             logger.info("Error obtaining user list. '{}'", e.getMessage());
+        }
+    }
+    
+    public static void Makereservation(int seat, int row, String date,String hour) {
+    	
+    	try {
+            Response response = appTarget.path(Reservation)
+            	.path("/reserv="+seat+"&"+row+"&"+date+"&"+hour)
+                .request(MediaType.APPLICATION_JSON)
+                .get();
+            	
+            // check that the response was HTTP OK
+            if (response.getStatusInfo().toEnum() == Status.OK) {
+                // the response is a generic type (a List<User>)
+            	logger.info("Saving the Reservation. '{}'", response);
+                //System.out.println(users);
+            } else {
+                logger.info("Error saving the Reservation. '{}'", response);
+            }
+        } catch (ProcessingException e) {
+            logger.info("Error saving the Reservation222222. '{}'", e.getMessage());
         }
     }
 }

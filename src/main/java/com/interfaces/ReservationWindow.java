@@ -1,6 +1,10 @@
 package com.interfaces;
 
 import javax.swing.*;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 
 import com.example.client.ClientApp;
 import com.example.pojo.Reservation;
@@ -10,11 +14,11 @@ import dao.SessionDAO;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
+import dao.SessionDAO;
 
 public class ReservationWindow extends JFrame implements ActionListener{
     
@@ -30,12 +34,27 @@ public class ReservationWindow extends JFrame implements ActionListener{
         setLayout(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
 
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        
+        JLabel Fecha = new JLabel("Date:");
+        JLabel Hora = new JLabel("Hour:");
 
-        JLabel datelabel = new JLabel("Date:");
-        datelabel.setBounds(50, 50, 100, 30);
-        add(datelabel);
+        
+        JTextField datetext = new JTextField();
+        JTextField hourtext = new JTextField();
+        
+        datetext.setBounds(90, 50, 100, 30);
+        add(datetext);
+        
+        hourtext.setBounds(250, 50, 100, 30);
+        add(hourtext);
+        
+        Fecha.setBounds(50, 50, 100, 30);
+        add(Fecha);
+        
+        Hora.setBounds(210, 50, 100, 30);
+        add(Hora);
 
         JLabel seatlabel = new JLabel("Seat number:");
         seatlabel.setBounds(50, 150, 100, 30);
@@ -53,9 +72,6 @@ public class ReservationWindow extends JFrame implements ActionListener{
         cancelButton.setBounds(200, 200, 100, 30);
         add(cancelButton);
 
-        JTextField dateTextField = new JTextField();
-        dateTextField.setBounds(150, 50, 200, 30);
-        add(dateTextField);
         /*
         JTextField seatTextField = new JTextField();
         seatTextField.setBounds(200, 100, 150, 30);
@@ -73,11 +89,13 @@ public class ReservationWindow extends JFrame implements ActionListener{
         reserveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 
-                    String session =  dateTextField.getText();
+            		String dateS = (String)datetext.getText();
+            		String hourS = (String)hourtext.getText();
+            		
                     int seat = (Integer)firstComboBox.getSelectedItem();
                     int row = (Integer)secondComboBox.getSelectedItem();
                     
-                    Reservation r = new Reservation();
+                    ClientApp.Makereservation(seat,row,dateS,hourS);
                     
                     dispose();
                     MainWindow mw = new MainWindow();
