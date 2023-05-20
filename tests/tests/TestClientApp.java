@@ -60,13 +60,6 @@ public class TestClientApp {
 		assertNotEquals(null, users);
     }
 	
-	@Test
-	public void loadUsersC() {
-		List<User> users = new ArrayList<User>();
-		ClientApp.loadUsers(users);
-		
-		assertNotEquals(null, users);
-	}
 	
 	@Test	
     public void getFilms() {
