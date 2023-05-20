@@ -25,7 +25,10 @@ public class BillboardWindow extends JFrame implements ActionListener {
     	setLocation(550,150);
       
         JLabel titleLabel = new JLabel("Billboard");
+        JTextField searchField = new JTextField("Search");
         JPanel moviePanel = new JPanel(new GridLayout(films.size(), 1));
+        JButton buscar = new JButton("Search");
+        JButton back = new JButton("Back");
         
         ImageIcon spid = new ImageIcon("spiderman.jpg");
         ImageIcon bat = new ImageIcon("batman.jpg");
@@ -33,17 +36,22 @@ public class BillboardWindow extends JFrame implements ActionListener {
         ImageIcon jur = new ImageIcon("dinosaurios.jpg");
         ImageIcon son = new ImageIcon("sonic.jpg");
         
-        setSize(400, 400);
+        setSize(500, 500);
     
         movieButtons = new JButton[films.size()]; 
         
      
         JPanel binf = new JPanel();
        
-
+        Container topContainer = getContentPane();
+        topContainer.setLayout(new BorderLayout());
+        topContainer.add(searchField, BorderLayout.NORTH);
+        topContainer.add(titleLabel, BorderLayout.CENTER);
+        topContainer.add(buscar, BorderLayout.EAST);
         Container container = getContentPane();
         container.setLayout(new BorderLayout());
-        container.add(titleLabel, BorderLayout.NORTH);
+        container.add(topContainer, BorderLayout.NORTH);
+
         container.add(moviePanel, BorderLayout.CENTER);
         container.add(binf, BorderLayout.SOUTH);
         
@@ -65,8 +73,22 @@ public class BillboardWindow extends JFrame implements ActionListener {
             moviePanel.add(button); 
         }
         
+        buscar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String wantedFilm = searchField.getText();
+				for(int i = 0; i < films.size(); i++) {
+					if(films.get(i).getName().contains(wantedFilm)) {
+						new SessionsWindow(films.get(i).getName(), films.get(i));
+					}
+				}
+				
+			}
+		});
+        
        
-        JButton back = new JButton("Back");  
+          
         binf.add(back);
         	back.addActionListener(new ActionListener() {
 
@@ -81,6 +103,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
       
         setVisible(true);
     }
+    
 
     
     
@@ -97,4 +120,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
 }
+
+
