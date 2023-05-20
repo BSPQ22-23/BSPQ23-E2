@@ -29,6 +29,7 @@ public class ClientApp {
 	protected static final Logger logger = LogManager.getLogger();
     static LoginWindow loginWIndow;
     
+    
     public static void main(String[] args) {
         // create the jersey client and configure the application endpoint
         
@@ -324,7 +325,7 @@ public class ClientApp {
 
     }
     
-    public static void loadUsers() {
+    public static void loadUsers(List<User> users) {
     	try {
             Response response = appTarget.path(USERS_RESOURCE)
                 .queryParam("order", "desc") 
@@ -335,7 +336,7 @@ public class ClientApp {
             if (response.getStatusInfo().toEnum() == Status.OK) {
                 // the response is a generic type (a List<User>)
                 GenericType<List<User>> listType = new GenericType<List<User>>(){};
-                List<User> users = response.readEntity(listType);
+                users = response.readEntity(listType);
                 //System.out.println(users);
             } else {
                 logger.info("Error obtaining user list. '{}'", response);

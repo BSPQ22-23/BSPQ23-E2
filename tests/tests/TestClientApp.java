@@ -2,6 +2,7 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -58,6 +59,15 @@ public class TestClientApp {
 		
 		assertNotEquals(null, users);
     }
+	
+	@Test
+	public void loadUsersC() {
+		List<User> users = new ArrayList<User>();
+		ClientApp.loadUsers(users);
+		
+		assertNotEquals(null, users);
+	}
+	
 	@Test	
     public void getFilms() {
         
@@ -88,4 +98,18 @@ public class TestClientApp {
 		UserDAO.getInstance().delete(usertest);
 		
     }
+	
+	/*@Test
+	public void logInC() {
+		ClientApp.newUser(10, "test2", "test2", "test2@gmail.com", "test2");
+		users = UserDAO.getInstance().getAll();
+		
+		for (int i=0; i<users.size(); i++) {
+			
+			if(users.get(i).getName().equals("test2") && users.get(i).getPassword().equals("test2")) {
+				assertTrue(true);
+			}
+		}
+		UserDAO.getInstance().delete(usertest);
+	}*/
 }
