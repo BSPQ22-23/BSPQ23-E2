@@ -28,6 +28,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import dao.ReservationDAO;
+import dao.SessionDAO;
 
 @Path("reservations")
 public class ReservationResource {
@@ -39,22 +40,31 @@ public class ReservationResource {
     @Path("/reserv={seat}&{row}&{date}&{hour}")
     public Response makeReservation(@PathParam("seat") int seat,@PathParam("row") int row,@PathParam("date") String dateS,@PathParam("hour") String hour,User user) {
     	
-    	SimpleDateFormat formatdate = new SimpleDateFormat("yyyy-MM-dd");
-		
-		Date date = null;
-		try {
-			date = (Date) formatdate.parse(dateS);
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+    	
+    	
+    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    	
+    	List<Session> sesi = SessionDAO.getInstance().getAll();
+    	int se = 0;
+    	
+    	for (Session session : sesi) {
+			try {
+				if(session.getDate().equals(format.parse(dateS)) && session.getTime().equals(hour)) {
+					se = session.getCode();
+				}
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
     	
     	
-    	Session sesi = new Session(1,date,hour,1);
-    	Reservation reserv = new Reservation(1,seat,row,sesi,loggedUser);
+    	List<Reservation> res = r.getAll();
     	
+    	
+    	Reservation reserv = new Reservation(res.size()+1,seat,row,se,1);
+
         reservations = r.getAll();
-        reserv.setReservoir(loggedUser);
         for(Reservation re : reservations){
             if(reserv.getRow() == re.getRow() && reserv.getSeat() == re.getSeat() && reserv.getCode() == re.getCode()){
                 return Response.status(Response.Status.NOT_ACCEPTABLE).build();
@@ -63,7 +73,30 @@ public class ReservationResource {
                 return Response.status(Response.Status.OK).build();
             }
         }
-        return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+        
+        if(true) {
+        	r.save(reserv);
+        	return Response.status(Response.Status.OK).build();
+        }else {
+        	return Response.status(Response.Status.GONE).build();
+        }
+        
+    }
+    
+    @POST
+    @Path("/Cancelreserve")
+    public Response CancelReservation(Reservation can) {
+    	
+    	System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    	System.out.println(can);
+    	try {
+    		ReservationDAO.getInstance().delete(can);
+    		return Response.status(Response.Status.OK).build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+		}
+    	
+    	
     }
 
 }

@@ -25,6 +25,7 @@ public class ClientApp {
     private static final String USERS_RESOURCE ="users";
     private static final String REGISTER ="users/register";
     private static final String Reservation ="reservations";
+    private static final String CancelReservation ="reservations/Cancelreserve";
     public static Client client = ClientBuilder.newClient();
     final static WebTarget appTarget = client.target(SERVER_ENDPOINT);
 	protected static final Logger logger = LogManager.getLogger();
@@ -366,4 +367,24 @@ public class ClientApp {
             logger.info("Error saving the Reservation222222. '{}'", e.getMessage());
         }
     }
+    public static void CancelReservation(Reservation can) {
+    	
+    	try {
+            Response response = appTarget.path(CancelReservation)
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(can, MediaType.APPLICATION_JSON));
+            	
+            // check that the response was HTTP OK
+            if (response.getStatusInfo().toEnum() == Status.OK) {
+                // the response is a generic type (a List<User>)
+            	logger.info("Cancelling the Reservation. '{}'", response);
+                //System.out.println(users);
+            } else {
+                logger.info("Error Cancelling the Reservation. '{}'", response);
+            }
+        } catch (ProcessingException e) {
+            logger.info("Error Cancelling the Reservation222222. '{}'", e.getMessage());
+        }
+    }
+    
 }

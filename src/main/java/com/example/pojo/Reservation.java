@@ -1,5 +1,7 @@
 package com.example.pojo;
 
+import java.text.SimpleDateFormat;
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
@@ -10,14 +12,14 @@ public class Reservation {
 	private int code;
 	private int row;
 	private int seat;
-	private Session session;
-	private User reservoir;
+	private int session;
+	private int reservoir;
 	
 	public Reservation() {
 		
 	}
 	
-	public Reservation(int code, int row, int seat, Session session, User reservoir) {
+	public Reservation(int code, int row, int seat, int session, int reservoir) {
 		this.code = code;
 		this.row = row;
 		this.seat = seat;
@@ -25,11 +27,11 @@ public class Reservation {
 		this.reservoir = reservoir;
 	}
 	
-	public User getReservoir() {
+	public int getReservoir() {
 		return reservoir;
 	}
 
-	public void setReservoir(User reservoir) {
+	public void setReservoir(int reservoir) {
 		this.reservoir = reservoir;
 	}
 
@@ -49,11 +51,11 @@ public class Reservation {
 		this.seat = seat;
 	}
 	
-	public Session getSession() {
+	public int getSession() {
 		return session;
 	}
 	
-	public void setSession(Session session) {
+	public void setSession(int session) {
 		this.session = session;
 	}
 
@@ -64,4 +66,8 @@ public class Reservation {
 	public void setCode(int code) {
 		this.code = code;
 	}
+	@Override
+    public String toString() {
+        return String.format("Reserve %s: Seat: %s Row: %s", code, seat, row);
+    }
 }

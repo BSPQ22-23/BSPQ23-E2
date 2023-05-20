@@ -38,6 +38,8 @@ public class MainWindow extends JFrame {
 		bar.add(bRe);
 		bReser = new JButton();
 		bar.add(bReser);
+		JButton bcancelReser = new JButton("Cancel Reserve");
+		bar.add(bcancelReser);
 		
 		bar.add(langComboBox);
 		
@@ -72,6 +74,17 @@ public class MainWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				ReservationWindow rw = new ReservationWindow();
+			}
+			
+			
+		});
+		
+		bcancelReser.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				CancelReserveWindow crw = new CancelReserveWindow();
 			}
 			
 			

@@ -69,7 +69,7 @@ public class Testing {
 		FilmDAO.getInstance().save(f5);
 
 
-		System.out.println(FilmDAO.getInstance().getAll());		
+			
 		
 		
 	}
