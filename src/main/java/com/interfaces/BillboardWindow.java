@@ -30,6 +30,8 @@ public class BillboardWindow extends JFrame implements ActionListener {
         JButton buscar = new JButton("Search");
         JButton back = new JButton("Back");
         
+        
+        
         ImageIcon spid = new ImageIcon("spiderman.jpg");
         ImageIcon bat = new ImageIcon("batman.jpg");
         ImageIcon ava = new ImageIcon("avatar.jpg");
@@ -43,7 +45,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
      
         JPanel binf = new JPanel();
        
-        Container topContainer = getContentPane();
+        Container topContainer = new Container();
         topContainer.setLayout(new BorderLayout());
         topContainer.add(searchField, BorderLayout.NORTH);
         topContainer.add(titleLabel, BorderLayout.CENTER);
@@ -54,6 +56,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
 
         container.add(moviePanel, BorderLayout.CENTER);
         container.add(binf, BorderLayout.SOUTH);
+        
         
         for (int i = 0; i < films.size(); i++) {
             Film film = films.get(i);
