@@ -12,6 +12,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.omg.CORBA.TSIdentificationPackage.NotAvailable;
 
 import java.util.List;
@@ -32,6 +34,7 @@ import dao.SessionDAO;
 
 @Path("reservations")
 public class ReservationResource {
+	protected static final Logger logger = LogManager.getLogger();
     ReservationDAO r = ReservationDAO.getInstance();
     static List<Reservation> reservations = new ArrayList<Reservation>();
     static User loggedUser;
@@ -95,15 +98,22 @@ public class ReservationResource {
      * @param can The reservation intended to be cancelled
      * @return
      */
-    @POST
-    @Path("/Cancelreserve")
-    public Response CancelReservation(Reservation can) {
+    @DELETE
+    @Path("/Cancelreserve={code}")
+    public Response CancelReservation(@PathParam("code") int code) {
     	
-    	System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-    	System.out.println(can);
+    	logger.info("Starting cancellng process...");
+    	
     	try {
-    		ReservationDAO.getInstance().delete(can);
-    		return Response.status(Response.Status.OK).build();
+    		reservations = r.getAll();
+    		for(Reservation re: reservations) {
+    			if(re.getCode()==code) {
+    				ReservationDAO.getInstance().delete(re);
+    				return Response.status(Response.Status.OK).build();
+    			}
+    		}
+    		
+    		return Response.status(Response.Status.GONE).build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
 		}
