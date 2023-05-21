@@ -395,9 +395,10 @@ public class ClientApp {
     public static void CancelReservation(Reservation can) {
     	
     	try {
-            Response response = appTarget.path(CancelReservation)
+            Response response = appTarget.path(Reservation)
+            	.path("/Cancelreserve=" + can.getCode())
                 .request(MediaType.APPLICATION_JSON)
-                .post(Entity.entity(can, MediaType.APPLICATION_JSON));
+                .delete();
             	
             // check that the response was HTTP OK
             if (response.getStatusInfo().toEnum() == Status.OK) {
