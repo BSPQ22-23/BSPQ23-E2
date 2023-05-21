@@ -18,10 +18,10 @@ public class MainWindow extends JFrame {
 
 	private JPanel panel;
 	private JToolBar bar;
-	public JComboBox<String> langComboBox;
-	public JButton bBill;
-	public JButton bRe;
-	public JButton bReser;
+	private JComboBox<String> langComboBox;
+	private JButton bBill;
+	private JButton bRe;
+	private JButton bReser;
 	
 	/**The window builder.
 	 * 
@@ -98,8 +98,8 @@ public class MainWindow extends JFrame {
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();
 				CancelReserveWindow crw = new CancelReserveWindow();
+				dispose();
 			}
 			
 			
@@ -120,7 +120,7 @@ public class MainWindow extends JFrame {
     /** This function is used to change the language of the window.
 	 * 
 	 */
-	public void changeLan() {
+	private void changeLan() {
 
 	        String lang = (String) langComboBox.getSelectedItem();
 	        Locale locale;
@@ -146,7 +146,7 @@ public class MainWindow extends JFrame {
 	    /**This function changes the text on the UI based on the current language.
 	     * 
 	     */
-	    public void changeUi() {
+	    private void changeUi() {
 	    	 ResourceBundle bundle = ResourceBundle.getBundle("language");
 	    	 String billText = bundle.getString("bill_button");
 	    	 String reText = bundle.getString("re_button");

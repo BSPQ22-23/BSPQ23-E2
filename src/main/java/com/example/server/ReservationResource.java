@@ -34,9 +34,9 @@ import dao.SessionDAO;
 
 @Path("reservations")
 public class ReservationResource {
-	protected static final Logger logger = LogManager.getLogger();
     ReservationDAO r = ReservationDAO.getInstance();
-    static List<Reservation> reservations = new ArrayList<Reservation>();
+    protected static final Logger logger = LogManager.getLogger();
+    List<Reservation> reservations = new ArrayList<Reservation>();
     static User loggedUser;
 
     /**This function uses the POST method to create a reservation object in the database, via the SessionDAO.
@@ -50,6 +50,7 @@ public class ReservationResource {
     @GET
     @Path("/reserv={seat}&{row}&{date}&{hour}")
     public Response makeReservation(@PathParam("seat") int seat,@PathParam("row") int row,@PathParam("date") String dateS,@PathParam("hour") String hour,User user) {
+        reservations = r.getAll();
     	
     	
     	
@@ -73,9 +74,8 @@ public class ReservationResource {
     	List<Reservation> res = r.getAll();
     	
     	
-    	Reservation reserv = new Reservation(res.size()+1,seat,row,se,1);
+    	Reservation reserv = new Reservation(res.size()+1,seat,row,se,loggedUser.getCode());
 
-        reservations = r.getAll();
         for(Reservation re : reservations){
             if(reserv.getRow() == re.getRow() && reserv.getSeat() == re.getSeat() && reserv.getCode() == re.getCode()){
                 return Response.status(Response.Status.NOT_ACCEPTABLE).build();
@@ -101,24 +101,22 @@ public class ReservationResource {
     @DELETE
     @Path("/Cancelreserve={code}")
     public Response CancelReservation(@PathParam("code") int code) {
-    	
-    	logger.info("Starting cancellng process...");
-    	
+    	reservations = r.getAll();
+    	System.out.println("___________________________________________________");
+    	System.out.println(code);
     	try {
-    		reservations = r.getAll();
-    		for(Reservation re: reservations) {
-    			if(re.getCode()==code) {
-    				ReservationDAO.getInstance().delete(re);
-    				return Response.status(Response.Status.OK).build();
-    			}
-    		}
-    		
-    		return Response.status(Response.Status.GONE).build();
+    		logger.info("Canceling reservation...");
+    		Reservation re = r.find(Integer.toString(code));
+    		System.out.println("___________________________________________________"+re);
+    		r.delete(re);
+    		return Response.ok().build();
+
 		} catch (Exception e) {
 			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
 		}
     	
     	
     }
+    
 
 }

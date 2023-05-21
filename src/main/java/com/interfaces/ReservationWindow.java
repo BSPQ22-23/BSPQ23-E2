@@ -24,13 +24,7 @@ public class ReservationWindow extends JFrame implements ActionListener{
     
     static List<Session> sessi = new ArrayList<Session>();
     public static final SessionDAO se = SessionDAO.getInstance();
-    private JComboBox<String> langComboBox;
-    private JLabel Fecha;
-    private JLabel Hora;
-    private JButton cancelButton;
-    private JLabel seatLabel;
-    private JLabel rowLabel;
-    private JButton reserveButton;
+
     /**The window builder.
      * 
      */
@@ -44,12 +38,10 @@ public class ReservationWindow extends JFrame implements ActionListener{
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        String[] lang = { "English", "Español", "Francais" };
-        langComboBox = new JComboBox<>(lang);
-        langComboBox.addActionListener(e -> changeLan());
+
         
-        Fecha = new JLabel();
-        Hora = new JLabel();
+        JLabel Fecha = new JLabel("Date (yy-MM-dd):");
+        JLabel Hora = new JLabel("Hour (hh:mm):");
 
         
         JTextField datetext = new JTextField();
@@ -67,31 +59,22 @@ public class ReservationWindow extends JFrame implements ActionListener{
         Hora.setBounds(210, 50, 100, 30);
         add(Hora);
 
-        seatLabel = new JLabel();
-        seatLabel.setBounds(50, 150, 100, 30);
-        add(seatLabel);
+        JLabel seatlabel = new JLabel("Seat number:");
+        seatlabel.setBounds(50, 150, 100, 30);
+        add(seatlabel);
 
-        rowLabel = new JLabel();
-        rowLabel.setBounds(50, 100, 150, 30);
-        add(rowLabel);
+        JLabel rowlabel = new JLabel("Row:");
+        rowlabel.setBounds(50, 100, 150, 30);
+        add(rowlabel);
 
-        reserveButton = new JButton();
+        JButton reserveButton = new JButton("Reserve");
         reserveButton.setBounds(50, 200, 100, 30);
-      
-        cancelButton = new JButton();
-        cancelButton.setBounds(250, 200, 100, 30);
-        
-        langComboBox.setBounds(150,200, 100, 30);
-        
-        add(cancelButton);
-        add(langComboBox);
         add(reserveButton);
-        
 
-        
-        
-        
-        changeUi();
+        JButton cancelButton = new JButton("Cancel");
+        cancelButton.setBounds(200, 200, 100, 30);
+        add(cancelButton);
+
         /*
         JTextField seatTextField = new JTextField();
         seatTextField.setBounds(200, 100, 150, 30);
@@ -165,53 +148,6 @@ public class ReservationWindow extends JFrame implements ActionListener{
 
 
     }
-    /**The function used to change the language of the app.
-     * 
-     */
-    private void changeLan() {
-
-        String lang = (String) langComboBox.getSelectedItem();
-        Locale locale;
-        switch (lang) {
-            case "English":
-            	locale = new Locale("en");
-                break;
-            case "Español":
-            	locale = new Locale("es");    
-            	break;
-            case "Francais":
-            	locale = new Locale("fr"); 
-            	break;  
-            default:
-            	locale = Locale.ENGLISH;
-          
-        }
-        
-        Locale.setDefault(locale);
-        changeUi();
-    }
-    
-    /**Changes the UI of the window based on the current language.
-     * 
-     */
-    private void changeUi() {
-   	 ResourceBundle bundle = ResourceBundle.getBundle("language");
-   	 String dateText = bundle.getString("date_label");
-   	 String hourText = bundle.getString("hour_label");
-   	 String backText = bundle.getString("back_button");
-   	 String seatText = bundle.getString("seat_label");
-   	 String rowText = bundle.getString("row_label");
-   	 String reserveText = bundle.getString("reserve_button");
-   	 Fecha.setText(dateText);
-   	 Hora.setText(hourText);
-   	 cancelButton.setText(backText);
-   	 seatLabel.setText(seatText);
-   	 rowLabel.setText(rowText);
-   	 reserveButton.setText(reserveText);
-   	 
-   	 
-		
-	}
 
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -76,7 +76,7 @@ public class CancelReserveWindow extends JFrame implements ActionListener {
 	        public void actionPerformed(ActionEvent e) {
 	            
 	        		Reservation can = (Reservation) firstComboBox.getSelectedItem();
-	        		ClientApp.CancelReservation(can);
+	        		ClientApp.CancelReservation(can.getCode());
 	                dispose();
 	                MainWindow mw = new MainWindow();
 	
@@ -88,7 +88,7 @@ public class CancelReserveWindow extends JFrame implements ActionListener {
 	         *
 	         */
 	        public void actionPerformed(ActionEvent e) {
-	            
+	            repaint();
 	            dispose();
 	            MainWindow mw = new MainWindow();
 	

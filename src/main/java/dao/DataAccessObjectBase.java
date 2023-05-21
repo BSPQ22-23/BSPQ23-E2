@@ -21,7 +21,7 @@ public class DataAccessObjectBase {
 			pm.deletePersistent(object);			
 			tx.commit();
 		} catch (Exception ex) {
-			logger.info("$ Error deleting an object: " + ex.getMessage());
+			System.out.println(" $ Error deleting an object: " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) {
 				tx.rollback();

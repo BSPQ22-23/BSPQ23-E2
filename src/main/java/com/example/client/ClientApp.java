@@ -25,7 +25,7 @@ public class ClientApp {
     private static final String USERS_RESOURCE ="users";
     private static final String REGISTER ="users/register";
     private static final String Reservation ="reservations";
-    private static final String CancelReservation ="reservations/Cancelreserve";
+    //private static final String CancelReservation ="reservations";
     public static Client client = ClientBuilder.newClient();
     final static WebTarget appTarget = client.target(SERVER_ENDPOINT);
 	protected static final Logger logger = LogManager.getLogger();
@@ -392,11 +392,11 @@ public class ClientApp {
         }
     }
     
-    public static void CancelReservation(Reservation can) {
+    public static void CancelReservation(int code) {
     	
     	try {
             Response response = appTarget.path(Reservation)
-            	.path("/Cancelreserve=" + can.getCode())
+            	.path("/Cancelreserve=" + code)
                 .request(MediaType.APPLICATION_JSON)
                 .delete();
             	
@@ -412,5 +412,6 @@ public class ClientApp {
             logger.info("Error Cancelling the Reservation222222. '{}'", e.getMessage());
         }
     }
+   
     
 }
