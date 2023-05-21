@@ -28,6 +28,10 @@ public class SessionResource {
     static List<Session> sessions = new ArrayList<Session>();
 
 
+	/**This function uses the POST method to create a Session object in the database.
+	 * @param session
+	 * @return
+	 */
 	@POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

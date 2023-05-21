@@ -19,6 +19,12 @@ public class Session {
 			
 		}
 		
+		/**Constructor for the Session class.
+		 * @param code
+		 * @param date
+		 * @param time
+		 * @param film
+		 */
 		public Session(int code, Date date, String time, int film) {
 			this.code = code;
 			this.date = date;

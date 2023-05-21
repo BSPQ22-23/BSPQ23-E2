@@ -19,6 +19,9 @@ public class LoginWindow extends JFrame implements ActionListener {
     private JButton loginButton;
     private JButton eloginButton;
 
+    /**The window builder.
+     * 
+     */
     public LoginWindow() {
      
         JLabel usernameLabel = new JLabel("Name:");
@@ -71,6 +74,10 @@ public class LoginWindow extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**Performs a different action depends on the pressed button. It can login with email and password, username and password, or register a user.
+     * If for example the user wants to login with email, they can do it by filling the relevant fields.
+     *
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == registerButton) {
         	

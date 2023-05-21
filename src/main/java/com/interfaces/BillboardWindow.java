@@ -25,6 +25,9 @@ public class BillboardWindow extends JFrame implements ActionListener {
 	private JButton back;
 	private JComboBox langComboBox;
 
+    /**The Window builder.
+     * 
+     */
     public BillboardWindow() {
         films = FilmDAO.getInstance().getAll();
         
@@ -72,6 +75,9 @@ public class BillboardWindow extends JFrame implements ActionListener {
             Film film = films.get(i);
             JButton button = new JButton(film.getName()); 
             button.addActionListener(new ActionListener() {
+                /**When the window is builded, a button is created for every film in the database, to access their sessions.
+                 *
+                 */
                 public void actionPerformed(ActionEvent e) {              	
                 	 for (int i = 0; i < movieButtons.length; i++) {
                          if (e.getSource() == movieButtons[i]) {
@@ -88,6 +94,9 @@ public class BillboardWindow extends JFrame implements ActionListener {
         
         buscar.addActionListener(new ActionListener() {
 			
+			/**The button used to search films, which creates a SessionWindow for the searched film(s).
+			 *
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String wantedFilm = searchField.getText();
@@ -105,6 +114,9 @@ public class BillboardWindow extends JFrame implements ActionListener {
         binf.add(back);
         	back.addActionListener(new ActionListener() {
 
+    			/**It is used to go back to the MainWindow.
+    			 *
+    			 */
     			@Override
     			public void actionPerformed(ActionEvent e) {
     				MainWindow vp = new MainWindow();
@@ -117,6 +129,9 @@ public class BillboardWindow extends JFrame implements ActionListener {
         setVisible(true);
     }
     
+    /**The function used to change the language of the app.
+     * 
+     */
     private void changeLan() {
 
         String lang = (String) langComboBox.getSelectedItem();
@@ -140,6 +155,9 @@ public class BillboardWindow extends JFrame implements ActionListener {
         changeUi();
     }
     
+    /**Changes the UI of the window based on the current language.
+     * 
+     */
     private void changeUi() {
    	 ResourceBundle bundle = ResourceBundle.getBundle("language");
    	 String backText = bundle.getString("back_button");

@@ -44,12 +44,18 @@ public class FilmResource {
 	
 	List<Film> films = new ArrayList<Film>();
 	
+	/**Default constructor, used only for database purposes.
+	 * 
+	 */
 	public FilmResource() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		this.pm = pmf.getPersistenceManager();
 		this.tx = pm.currentTransaction();
 	}
 	
+	/**This function uses the GET protocol to retrieve all the films stored in the database via the FilmDAO.
+	 * @return
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
     public List<Film> getFilms() {

@@ -36,6 +36,14 @@ public class ReservationResource {
     static List<Reservation> reservations = new ArrayList<Reservation>();
     static User loggedUser;
 
+    /**This function uses the POST method to create a reservation object in the database, via the SessionDAO.
+     * @param seat
+     * @param row
+     * @param dateS
+     * @param hour
+     * @param user
+     * @return Returns the status of the response.
+     */
     @GET
     @Path("/reserv={seat}&{row}&{date}&{hour}")
     public Response makeReservation(@PathParam("seat") int seat,@PathParam("row") int row,@PathParam("date") String dateS,@PathParam("hour") String hour,User user) {
@@ -83,6 +91,10 @@ public class ReservationResource {
         
     }
     
+    /**This function erases a reservation from the database, thus canceling it.
+     * @param can The reservation intended to be cancelled
+     * @return
+     */
     @POST
     @Path("/Cancelreserve")
     public Response CancelReservation(Reservation can) {

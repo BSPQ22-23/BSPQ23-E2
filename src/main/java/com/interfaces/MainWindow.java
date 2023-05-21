@@ -23,6 +23,9 @@ public class MainWindow extends JFrame {
 	private JButton bRe;
 	private JButton bReser;
 	
+	/**The window builder.
+	 * 
+	 */
 	public MainWindow() {
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -45,6 +48,9 @@ public class MainWindow extends JFrame {
 		
 		bBill.addActionListener(new ActionListener() {
 
+			/**Access to the BillboardWindow.
+			 *
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BillboardWindow billw = new BillboardWindow();
@@ -59,6 +65,9 @@ public class MainWindow extends JFrame {
 
 		bRe.addActionListener(new ActionListener() {
 
+			/**Access to the Reviews window.
+			 *
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Reviews re = new Reviews();	
@@ -70,6 +79,9 @@ public class MainWindow extends JFrame {
 
 		bReser.addActionListener(new ActionListener() {
 
+			/**Access to the ReservationWindow.
+			 *
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -81,6 +93,9 @@ public class MainWindow extends JFrame {
 		
 		bcancelReser.addActionListener(new ActionListener() {
 
+			/**Access to the CancelReserveWindow.
+			 *
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -102,7 +117,10 @@ public class MainWindow extends JFrame {
 		changeUi();
 	}
 	
-	  private void changeLan() {
+    /** This function is used to change the language of the window.
+	 * 
+	 */
+	private void changeLan() {
 
 	        String lang = (String) langComboBox.getSelectedItem();
 	        Locale locale;
@@ -125,6 +143,9 @@ public class MainWindow extends JFrame {
 	        changeUi();
 	    }
 	  
+	    /**This function changes the text on the UI based on the current language.
+	     * 
+	     */
 	    private void changeUi() {
 	    	 ResourceBundle bundle = ResourceBundle.getBundle("language");
 	    	 String billText = bundle.getString("bill_button");

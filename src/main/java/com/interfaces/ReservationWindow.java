@@ -25,6 +25,9 @@ public class ReservationWindow extends JFrame implements ActionListener{
     static List<Session> sessi = new ArrayList<Session>();
     public static final SessionDAO se = SessionDAO.getInstance();
 
+    /**The window builder.
+     * 
+     */
     public ReservationWindow(){
 
         setTitle("Reservation");
@@ -87,6 +90,9 @@ public class ReservationWindow extends JFrame implements ActionListener{
         
 
         reserveButton.addActionListener(new ActionListener() {
+            /**Creates the reservation with the selected fields (date, hour, row and seat).
+             *
+             */
             public void actionPerformed(ActionEvent e) {
                 
             		String dateS = (String)datetext.getText();
@@ -104,6 +110,9 @@ public class ReservationWindow extends JFrame implements ActionListener{
         });
 
         cancelButton.addActionListener(new ActionListener() {
+            /**Closes the window and goes back to MainWindow.
+             *
+             */
             public void actionPerformed(ActionEvent e) {
                 
                 dispose();
@@ -119,6 +128,9 @@ public class ReservationWindow extends JFrame implements ActionListener{
         add(secondComboBox);
 
         firstComboBox.addActionListener(new ActionListener() {
+            /**It is used to automatically fill the second combobox with the data of the firs one, just for avoiding null purposes.
+             *
+             */
             public void actionPerformed(ActionEvent e) {
 
 

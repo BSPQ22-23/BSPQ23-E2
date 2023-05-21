@@ -21,6 +21,10 @@ class SessionsWindow extends JFrame {
 	List<Session> sessions;
 	
 	
+    /**The window builder. This window shows all the sessions assigned to a film.
+     * @param movieName A string containing the exact Name field of a film.
+     * @param film The film object to retrieve its data to show it on the window.
+     */
     public SessionsWindow(String movieName, Film film) {
     	allSessions = SessionDAO.getInstance().getAll();
     	sessions = new ArrayList<Session>();

@@ -27,6 +27,13 @@ public class User {
         this.surname = surname;
     }
 
+    /**Constructor for the User class.
+     * @param code
+     * @param name
+     * @param surname
+     * @param email
+     * @param password
+     */
     public User(int code, String name, String surname, String email, String password) {
         this.name = name;
         this.surname = surname;

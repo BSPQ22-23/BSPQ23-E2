@@ -23,6 +23,10 @@ public class Reviews extends JFrame {
     private JComboBox<String> langComboBox;
     private JTextArea reviewTextArea;
     private JButton back;
+    
+    /**The window builder.
+     * 
+     */
     public Reviews() {
         setTitle("Reviews");
         setLocation(600,250);
@@ -58,6 +62,9 @@ public class Reviews extends JFrame {
 		
 		back.addActionListener(new ActionListener() {
 
+			/**Allows the Back button to go back to the MainWindow.
+			 *
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainWindow vp = new MainWindow();
@@ -68,6 +75,9 @@ public class Reviews extends JFrame {
     }
   
 
+    /**Shows the reviews for the current films. They can be translated to other languages.
+     * 
+     */
     private void showReview() {
 
         String movie = (String) moviesComboBox.getSelectedItem();
@@ -95,6 +105,9 @@ public class Reviews extends JFrame {
         }
     }
     
+    /**The function that allows the language to be changed.
+     * 
+     */
     private void changeLan() {
 
         String lang = (String) langComboBox.getSelectedItem();
@@ -118,7 +131,11 @@ public class Reviews extends JFrame {
         showReview();
         changeUi();
     }
-
+    
+    
+    /**Changes the UI of the window based on the current language.
+     * 
+     */
     private void changeUi() {
     	 ResourceBundle bundle = ResourceBundle.getBundle("language");
     	 String backText = bundle.getString("back_button");

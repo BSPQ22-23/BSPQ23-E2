@@ -19,6 +19,13 @@ public class Reservation {
 		
 	}
 	
+	/**Constructor for the Reservation class.
+	 * @param code
+	 * @param row
+	 * @param seat
+	 * @param session
+	 * @param reservoir
+	 */
 	public Reservation(int code, int row, int seat, int session, int reservoir) {
 		this.code = code;
 		this.row = row;

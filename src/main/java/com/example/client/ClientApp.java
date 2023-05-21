@@ -213,6 +213,13 @@ public class ClientApp {
         loginWIndow = new LoginWindow();
     }
     
+    /**This function uses the POST protocol to send a new user to the server.
+     * @param code
+     * @param name
+     * @param surename
+     * @param email
+     * @param password
+     */
     public static void newUser(int code, String name, String surename, String email, String password) {
     	 try {
              Response res = appTarget.path(USERS_RESOURCE)
@@ -269,6 +276,10 @@ public class ClientApp {
          */
     }
 
+    /**This function uses the GET protocol to tell the server to obtain a user via their email and password, used for verification in the Log In.
+     * @param email
+     * @param password
+     */
     public static void esearchUser( String email, String password){
         try {
             //System.out.println(email);
@@ -296,6 +307,10 @@ public class ClientApp {
 
     }
     
+    /**This function uses the GET protocol to tell the server to obtain a user via their name and password, used for verification in the Log In.
+     * @param username
+     * @param password
+     */
     public static void searchUser( String username, String password){
         try {
             logger.info(username);
@@ -326,6 +341,9 @@ public class ClientApp {
 
     }
     
+    /**This function uses the GET protocol to get all the users via the server.
+     * 
+     */
     public static void loadUsers() {
     	try {
             Response response = appTarget.path(USERS_RESOURCE)
@@ -347,6 +365,12 @@ public class ClientApp {
         }
     }
     
+    /**This function uses the POST protocol to create a reservation via the server.
+     * @param seat
+     * @param row
+     * @param date
+     * @param hour
+     */
     public static void Makereservation(int seat, int row, String date,String hour) {
     	
     	try {
@@ -367,6 +391,7 @@ public class ClientApp {
             logger.info("Error saving the Reservation222222. '{}'", e.getMessage());
         }
     }
+    
     public static void CancelReservation(Reservation can) {
     	
     	try {

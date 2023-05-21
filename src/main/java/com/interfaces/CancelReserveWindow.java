@@ -34,6 +34,9 @@ public class CancelReserveWindow extends JFrame implements ActionListener {
 	static List<Session> sessi = new ArrayList<Session>();
     public static final ReservationDAO re = ReservationDAO.getInstance();
 
+    /**The window builder.
+     * 
+     */
     public CancelReserveWindow(){
 		setTitle("Cancel Reservation");
 	    setSize(400, 300);
@@ -67,6 +70,9 @@ public class CancelReserveWindow extends JFrame implements ActionListener {
         add(cancelButton);
 	
 	    CancelreserveButton.addActionListener(new ActionListener() {
+	        /**Calls the method to cancel the selected reservation, then goes back to the MainWindow.
+	         *
+	         */
 	        public void actionPerformed(ActionEvent e) {
 	            
 	        		Reservation can = (Reservation) firstComboBox.getSelectedItem();
@@ -78,6 +84,9 @@ public class CancelReserveWindow extends JFrame implements ActionListener {
 	    });
 	
 	    cancelButton.addActionListener(new ActionListener() {
+	        /**Returns to the MainWindow.
+	         *
+	         */
 	        public void actionPerformed(ActionEvent e) {
 	            
 	            dispose();

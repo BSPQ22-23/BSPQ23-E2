@@ -18,6 +18,11 @@ public class Film {
 		
 	}
 	
+	/**Constructor for the Film class.
+	 * @param code
+	 * @param name
+	 * @param year
+	 */
 	public Film(int code, String name, int year) {
 		this.code = code;
 		this.name = name;

@@ -30,6 +30,10 @@ import com.interfaces.*;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
+/**
+ * @author BSPQE2
+ *
+ */
 @Path("users")
 
 public class UserResource {
@@ -51,6 +55,9 @@ public class UserResource {
         }
     }
     
+    /**Default constructor, used only for database purposes.
+     * 
+     */
     public UserResource() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		this.pm = pmf.getPersistenceManager();
@@ -59,6 +66,9 @@ public class UserResource {
     
     static User loggedUser;
 
+    /**This function retrieves the users from the database using the UserDAO, via GET protocol.
+     * @return The stream is returned as a list of users.
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsers() {
@@ -99,6 +109,10 @@ public class UserResource {
     
     
     //The same metohod but with databse
+    /**This function uses POST to add a user to the database.
+     * @param user
+     * @return Returns the response of the operation.
+     */
     @POST
 	@Path("/register")
 	public Response registerUser(User user) {
@@ -126,6 +140,12 @@ public class UserResource {
 		}
 	}
     
+    /**This function uses the GET protocol to verify if an user exists in the database using their name and password, and if so
+     * make them the currently logged user.
+     * @param username
+     * @param password
+     * @return The response is returned, if it's OK, if something is wrong will be responded with NOT_ACCEPTABLE and if the user is not found will return NOT_FOUND.
+     */
     @GET
     @Path("/login={name}&{pass}")
     //@Produces(MediaType.APPLICATION_JSON)
@@ -146,6 +166,12 @@ public class UserResource {
     }
     
 
+    /**This function uses the GET protocol to verify if an user exists in the database using their email and password, and if so
+     * make them the currently logged user.
+     * @param email
+     * @param password
+     * @return The response is returned, if it's OK, if something is wrong will be responded with NOT_ACCEPTABLE and if the user is not found will return NOT_FOUND.
+     */
     @GET
     @Path("/elogin={email}&{pass}")
     //@Produces(MediaType.APPLICATION_JSON)
@@ -166,6 +192,10 @@ public class UserResource {
     	return Response.status(Response.Status.NOT_FOUND).build();
     }
 
+    /**This function uses the DELETE protocol to erase a user from the database via the UserDAO.
+     * @param code
+     * @return The response is returned, if it was OK or the user was NOT_FOUND.
+     */
     @DELETE
     @Path("/delete={code}")
     public Response deleteUser(@PathParam("code") int code) {
