@@ -23,7 +23,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
 	private JLabel titleLabel;
 	private JButton buscar;
 	private JButton back;
-	private JComboBox langComboBox;
+	private JComboBox<String> langComboBox;
 
     /**The Window builder.
      * 
@@ -37,7 +37,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
         langComboBox = new JComboBox<>(lang);
         langComboBox.addActionListener(e -> changeLan());
         titleLabel = new JLabel();
-        JTextField searchField = new JTextField("Search");
+        JTextField searchField = new JTextField();
         JPanel moviePanel = new JPanel(new GridLayout(films.size(), 1));
         buscar = new JButton();
         back = new JButton();
@@ -112,6 +112,7 @@ public class BillboardWindow extends JFrame implements ActionListener {
        
           
         binf.add(back);
+        binf.add(langComboBox);
         	back.addActionListener(new ActionListener() {
 
     			/**It is used to go back to the MainWindow.
