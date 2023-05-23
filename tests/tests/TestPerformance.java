@@ -29,6 +29,7 @@ public class TestPerformance {
 		 FilmDAO.getInstance().save(new Film(1,"Star Wars",2));
 	 }
 	 
+	 //easter eggs
 	 
 	 @Test
 	 @JUnitPerfTest(threads = 20, durationMs = 2000)
