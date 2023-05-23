@@ -1,6 +1,5 @@
 var hierarchy =
 [
-    [ "org.exemple.demo.App", "classorg_1_1exemple_1_1demo_1_1_app.html", null ],
     [ "com.example.client.ClientApp", "classcom_1_1example_1_1client_1_1_client_app.html", null ],
     [ "dao.DataAccessObjectBase", "classdao_1_1_data_access_object_base.html", [
       [ "dao.FilmDAO", "classdao_1_1_film_d_a_o.html", null ],
@@ -29,24 +28,20 @@ var hierarchy =
     [ "com.example.server.ReservationResource", "classcom_1_1example_1_1server_1_1_reservation_resource.html", null ],
     [ "com.example.pojo.Session", "classcom_1_1example_1_1pojo_1_1_session.html", null ],
     [ "com.example.server.SessionResource", "classcom_1_1example_1_1server_1_1_session_resource.html", null ],
-    [ "tests.TestClientApp", "classtests_1_1_test_client_app.html", null ],
-    [ "tests.Testing", "classtests_1_1_testing.html", null ],
-    [ "tests.TestPerformance", "classtests_1_1_test_performance.html", null ],
     [ "com.example.pojo.User", "classcom_1_1example_1_1pojo_1_1_user.html", null ],
     [ "com.example.server.UserResource", "classcom_1_1example_1_1server_1_1_user_resource.html", null ],
     [ "ActionListener", null, [
       [ "com.interfaces.BillboardWindow", "classcom_1_1interfaces_1_1_billboard_window.html", null ],
+      [ "com.interfaces.CancelReserveWindow", "classcom_1_1interfaces_1_1_cancel_reserve_window.html", null ],
       [ "com.interfaces.LoginWindow", "classcom_1_1interfaces_1_1_login_window.html", null ],
       [ "com.interfaces.ReservationWindow", "classcom_1_1interfaces_1_1_reservation_window.html", null ]
     ] ],
     [ "JFrame", null, [
       [ "com.interfaces.BillboardWindow", "classcom_1_1interfaces_1_1_billboard_window.html", null ],
+      [ "com.interfaces.CancelReserveWindow", "classcom_1_1interfaces_1_1_cancel_reserve_window.html", null ],
       [ "com.interfaces.LoginWindow", "classcom_1_1interfaces_1_1_login_window.html", null ],
       [ "com.interfaces.MainWindow", "classcom_1_1interfaces_1_1_main_window.html", null ],
       [ "com.interfaces.ReservationWindow", "classcom_1_1interfaces_1_1_reservation_window.html", null ],
       [ "com.interfaces.Reviews", "classcom_1_1interfaces_1_1_reviews.html", null ]
-    ] ],
-    [ "TestCase", null, [
-      [ "org.exemple.demo.AppTest", "classorg_1_1exemple_1_1demo_1_1_app_test.html", null ]
     ] ]
 ];

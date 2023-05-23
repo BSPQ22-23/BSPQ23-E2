@@ -21,6 +21,7 @@ var annotated_dup =
       ] ],
       [ "interfaces", "namespacecom_1_1interfaces.html", [
         [ "BillboardWindow", "classcom_1_1interfaces_1_1_billboard_window.html", "classcom_1_1interfaces_1_1_billboard_window" ],
+        [ "CancelReserveWindow", "classcom_1_1interfaces_1_1_cancel_reserve_window.html", "classcom_1_1interfaces_1_1_cancel_reserve_window" ],
         [ "LoginWindow", "classcom_1_1interfaces_1_1_login_window.html", "classcom_1_1interfaces_1_1_login_window" ],
         [ "MainWindow", "classcom_1_1interfaces_1_1_main_window.html", "classcom_1_1interfaces_1_1_main_window" ],
         [ "ReservationWindow", "classcom_1_1interfaces_1_1_reservation_window.html", "classcom_1_1interfaces_1_1_reservation_window" ],
@@ -34,18 +35,5 @@ var annotated_dup =
       [ "ReservationDAO", "classdao_1_1_reservation_d_a_o.html", "classdao_1_1_reservation_d_a_o" ],
       [ "SessionDAO", "classdao_1_1_session_d_a_o.html", "classdao_1_1_session_d_a_o" ],
       [ "UserDAO", "classdao_1_1_user_d_a_o.html", "classdao_1_1_user_d_a_o" ]
-    ] ],
-    [ "org", null, [
-      [ "exemple", null, [
-        [ "demo", "namespaceorg_1_1exemple_1_1demo.html", [
-          [ "App", "classorg_1_1exemple_1_1demo_1_1_app.html", null ],
-          [ "AppTest", "classorg_1_1exemple_1_1demo_1_1_app_test.html", "classorg_1_1exemple_1_1demo_1_1_app_test" ]
-        ] ]
-      ] ]
-    ] ],
-    [ "tests", "namespacetests.html", [
-      [ "TestClientApp", "classtests_1_1_test_client_app.html", "classtests_1_1_test_client_app" ],
-      [ "Testing", "classtests_1_1_testing.html", "classtests_1_1_testing" ],
-      [ "TestPerformance", "classtests_1_1_test_performance.html", "classtests_1_1_test_performance" ]
     ] ]
 ];

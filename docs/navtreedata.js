@@ -24,9 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Cinema Reservation", "index.html", [
-    [ "Simple Jersey Application With Maven", "md__r_e_a_d_m_e.html", null ],
-    [ "Simple Jersey Application With Maven", "md___users_charlottesoltysiak__documents__git_hub__b_s_p_q23__e2__r_e_a_d_m_e.html", null ],
+  [ "Cinema", "index.html", [
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -35,8 +33,8 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
@@ -48,8 +46,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_app_8java.html",
-"classdao_1_1_data_access_object_base.html#a4a7e70fb9dcf3f0a5b2075cc7fffec3c"
+"_billboard_window_8java.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
